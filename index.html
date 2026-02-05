@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nikhil Kumar | Developer • Creator • Entrepreneur</title>
+    <meta name="description"
+        content="Portfolio of Nikhil Kumar Singh - Software Developer, AI/ML Enthusiast, and Creative Entrepreneur. Founder of Tri Matic video production team.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/cert-lightbox.css">
+    <link rel="stylesheet" href="css/mobile-perf.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+        <div class="cursor-glow"></div>
+        <div class="cursor-label" aria-hidden="true"></div>
+    </div>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-bg preloader-bg-top"></div>
+        <div class="preloader-bg preloader-bg-bottom"></div>
+        <div class="preloader-content">
+            <div class="preloader-text">
+                <h1 class="preloader-title">BE THE</h1>
+            </div>
+            <div class="preloader-line"></div>
+            <div class="preloader-text">
+                <h1 class="preloader-title accent">PRIME</h1>
+            </div>
+        </div>
+        <div class="preloader-note" role="status" aria-live="polite">
+            <svg class="note-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span class="note-text">For Optimal Viewing • Switch to Desktop</span>
+        </div>
+        <div class="preloader-corners">
+            <div class="corner-info top-left">
+                <span>Bhubaneswar, India</span>
+                <span>Portfolio 2026</span>
+            </div>
+            <div class="corner-info top-right">
+                <span>System Ready</span>
+                <span>V 1.0</span>
+            </div>
+            <div class="corner-counter">
+                <span id="counter">000</span>
+            </div>
+        </div>
+        <div class="preloader-noise"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main">
+
+        <!-- Navigation -->
+        <nav class="navbar" id="navbar">
+            <div class="scroll-progress" id="scroll-progress"></div>
+            <div class="nav-logo">
+                <a href="#hero" class="logo-text">NK<span class="accent">.</span></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#trimatic" class="nav-link">Tri Matic</a>
+                <a href="#beyond" class="nav-link">Beyond</a>
+                <a href="#contact" class="nav-link nav-cta">Let's Talk</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="#about" class="mobile-link">About</a>
+                <a href="#skills" class="mobile-link">Skills</a>
+                <a href="#projects" class="mobile-link">Projects</a>
+                <a href="#education" class="mobile-link">Education</a>
+                <a href="#trimatic" class="mobile-link">Tri Matic</a>
+                <a href="#beyond" class="mobile-link">Beyond</a>
+                <a href="#contact" class="mobile-link">Contact</a>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-bg">
+                <div class="hero-gradient"></div>
+                <div class="hero-grid"></div>
+                <div class="hero-particles" id="hero-particles"></div>
+                <canvas class="hero-audio" id="hero-audio"></canvas>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-layout">
+                    <div class="hero-left">
+                        <div class="hero-kicker">
+                            <span class="kicker-line"></span>
+                            <span class="kicker-text">Developer • Creator • Entrepreneur</span>
+                        </div>
+
+                        <h1 class="hero-title">
+                            <div class="title-line">
+                                <span class="title-word">Hi, I'm</span>
+                            </div>
+                            <div class="title-line">
+                                <span class="title-word gradient-text animated-gradient-text">Nikhil</span>
+                                <span class="title-word outline">Kumar</span>
+                            </div>
+                        </h1>
+
+                        <p class="hero-description">
+                            Computer Science student & creative entrepreneur. Building AI-powered solutions by day,
+                            crafting visual stories by night. From hackathon stages to client deliveries—I bridge code
+                            and creativity.
+                        </p>
+
+                        <div class="hero-actions">
+                            <a href="#projects" class="cta-button primary liquid-button bounce-hover">
+                                <span class="cta-bg"></span>
+                                <span class="cta-text">View My Work</span>
+                                <span class="cta-arrow">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M7 7h10v10M7 17L17 7" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <a href="#trimatic" class="cta-button secondary liquid-button bounce-hover">
+                                <span class="cta-text">Explore Tri Matic</span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="hero-right">
+                        <div class="hero-playground" aria-hidden="true">
+                            <div class="playground-ring"></div>
+                            <div class="playground-ring ring-2"></div>
+                            <div class="playground-orb">NK</div>
+                            <div class="play-item" data-depth="1.2">3 Projects</div>
+                            <div class="play-item" data-depth="0.8">8.7K Subs</div>
+                            <div class="play-item" data-depth="1.1">3M Views</div>
+                            <div class="play-item" data-depth="0.9">Top 10 HackNation</div>
+                            <div class="play-item" data-depth="1">AI/ML Builder</div>
+                            <div class="play-item" data-depth="0.7">Tri Matic Lead</div>
+                        </div>
+
+                        <button class="audio-toggle audio-pill" id="audio-toggle" type="button" aria-pressed="false">
+                            <span class="audio-icon"></span>
+                            <span class="audio-text">Visualizer Off</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-scroll">
+                <div class="scroll-indicator">
+                    <span class="scroll-text">Scroll</span>
+                    <div class="scroll-line"></div>
+                </div>
+            </div>
+
+            <div class="hero-decorations">
+                <div class="decoration-circle"></div>
+                <div class="decoration-dots"></div>
+            </div>
+        </section>
+
+        <!-- Horizontal Sliding Text (Agero-style) -->
+        <section class="sliding-text-section">
+            <div class="sliding-container">
+                <div class="text-row text-row-1" data-direction="left">
+                    <span class="slide-text">DEVELOPER</span>
+                    <span class="slide-dot">●</span>
+                    <span class="slide-text">AI ENTHUSIAST</span>
+                    <span class="slide-dot">●</span>
+                    <span class="slide-text">MACHINE LEARNING</span>
+                    <span class="slide-dot">●</span>
+                    <span class="slide-text">DEVELOPER</span>
+                    <span class="slide-dot">●</span>
+                    <span class="slide-text">AI ENTHUSIAST</span>
+                    <span class="slide-dot">●</span>
+                    <span class="slide-text">MACHINE LEARNING</span>
+                    <span class="slide-dot">●</span>
+                </div>
+                <div class="text-row text-row-2" data-direction="right">
+                    <span class="slide-text outline">CREATOR</span>
+                    <span class="slide-dot">●</span>
+                    <span class="slide-text outline">VIDEO PRODUCTION</span>
+                    <span class="slide-dot">●</span>
+                    <span class="slide-text outline">ENTREPRENEUR</span>
+                    <span class="slide-dot">●</span>
+                    <span class="slide-text outline">CREATOR</span>
+                    <span class="slide-dot">●</span>
+                    <span class="slide-text outline">VIDEO PRODUCTION</span>
+                    <span class="slide-dot">●</span>
+                    <span class="slide-text outline">ENTREPRENEUR</span>
+                    <span class="slide-dot">●</span>
+                </div>
+                <div class="text-row text-row-3" data-direction="left">
+                    <span class="slide-text accent">TRI MATIC</span>
+                    <span class="slide-dot">●</span>
+                    <span class="slide-text">PYTHON</span>
+                    <span class="slide-dot">●</span>
+                    <span class="slide-text accent">FULL STACK</span>
+                    <span class="slide-dot">●</span>
+                    <span class="slide-text accent">TRI MATIC</span>
+                    <span class="slide-dot">●</span>
+                    <span class="slide-text">PYTHON</span>
+                    <span class="slide-dot">●</span>
+                    <span class="slide-text accent">FULL STACK</span>
+                    <span class="slide-dot">●</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <div class="about-header">
+                    <span class="section-number">01</span>
+                    <span class="section-label">Who I Am</span>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-text-wrap">
+                        <p class="about-text smooth-reveal" id="about-text">
+                            I'm a Computer Science student at SOA University with a passion for building things that
+                            matter. Whether it's an AI-powered proctoring system or a viral video edit, I bring the same
+                            level of dedication and creativity to every project.
+                        </p>
+                    </div>
+
+                    <div class="about-split">
+                        <div class="about-portrait" aria-hidden="true">
+                            <div class="portrait-layer layer-1"></div>
+                            <div class="portrait-layer layer-2"></div>
+                            <div class="portrait-layer layer-3"></div>
+                            <div class="portrait-badge">NK</div>
+                        </div>
+
+                        <div class="about-facts">
+                            <div class="about-fact">
+                                <span class="fact-label">Focus</span>
+                                <h3 class="fact-title">Full‑Stack + AI/ML Systems</h3>
+                                <p class="fact-desc">Building product-ready pipelines, intelligent automation, and clean
+                                    interfaces.</p>
+                            </div>
+                            <div class="about-fact">
+                                <span class="fact-label">Creative</span>
+                                <h3 class="fact-title">Motion & Visual Storytelling</h3>
+                                <p class="fact-desc">Editing, motion graphics, and cinematic visuals for digital brands.
+                                </p>
+                            </div>
+                            <div class="about-fact">
+                                <span class="fact-label">Leadership</span>
+                                <h3 class="fact-title">Tri Matic Production</h3>
+                                <p class="fact-desc">Leading a creative team delivering video and brand campaigns.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience" id="experience">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <span class="section-label">Experience</span>
+                    <h2 class="section-title">Where I've<br><span class="outline">Worked</span></h2>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item" data-aos="fade-up">
+                        <div class="timeline-marker">
+                            <div class="marker-dot"></div>
+                            <div class="marker-line"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="cert-preview-badge">
+                                <img src="assets/Shell Internship.webp" alt="Certificate badge" />
+                            </div>
+                            <div class="timeline-header">
+                                <span class="timeline-date">June 2025</span>
+                                <span class="timeline-tag">Internship</span>
+                            </div>
+                            <h3 class="timeline-title">AI & Data Analytics Intern</h3>
+                            <h4 class="timeline-company">Shell India | AICTE</h4>
+                            <ul class="timeline-details">
+                                <li>Built CNN model for E-waste detection with 92% accuracy</li>
+                                <li>Worked on computer vision workflows for AI sustainability</li>
+                                <li>Used Google Teachable Machine and Python notebooks</li>
+                            </ul>
+                            <button class="timeline-cert-btn" data-cert-image="assets/Shell Internship.webp"
+                                aria-label="View certificate">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                    <circle cx="8.5" cy="8.5" r="1.5" />
+                                    <path d="M21 15l-5-5L5 21" />
+                                </svg>
+                                <span>View Certificate</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-aos="fade-up">
+                        <div class="timeline-marker">
+                            <div class="marker-dot"></div>
+                            <div class="marker-line"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="cert-preview-badge">
+                                <img src="assets/SAIL training.webp" alt="Certificate badge" />
+                            </div>
+                            <div class="timeline-header">
+                                <span class="timeline-date">July 2024</span>
+                                <span class="timeline-tag">Training</span>
+                            </div>
+                            <h3 class="timeline-title">Industrial Training Intern</h3>
+                            <h4 class="timeline-company">SAIL - Bokaro Steel Plant</h4>
+                            <ul class="timeline-details">
+                                <li>Training at India's leading Maharatna PSU</li>
+                                <li>Database queries for operational data analysis</li>
+                                <li>Enterprise ERP systems and industrial automation</li>
+                            </ul>
+                            <button class="timeline-cert-btn" data-cert-image="assets/SAIL training.webp"
+                                aria-label="View certificate">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                    <circle cx="8.5" cy="8.5" r="1.5" />
+                                    <path d="M21 15l-5-5L5 21" />
+                                </svg>
+                                <span>View Certificate</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills" id="skills">
+            <div class="skills-bg">
+                <div class="skills-gradient"></div>
+            </div>
+            <div class="container">
+                <div class="section-header center">
+                    <span class="section-number">03</span>
+                    <span class="section-label">Capabilities</span>
+                    <h2 class="section-title">Skills &<br><span class="gradient-text">Expertise</span></h2>
+                </div>
+
+                <div class="skills-constellation">
+                    <div class="skills-legend">
+                        <div class="legend-item">
+                            <span class="legend-dot default"></span>
+                            <span class="legend-label">Core Skills</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot learning"></span>
+                            <span class="legend-label">Learning</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot creative"></span>
+                            <span class="legend-label">Creative</span>
+                        </div>
+                    </div>
+                    <div class="constellation-core">
+                        <span class="core-label">Skill Core</span>
+                        <h3 class="core-title">Engineering + Creativity</h3>
+                        <p class="core-desc">Orbiting competencies that power my builds, visuals, and experiments.</p>
+                    </div>
+
+                    <div class="orbit orbit-1" data-radius="160">
+                        <span class="orbit-tag">Java</span>
+                        <span class="orbit-tag">Python</span>
+                        <span class="orbit-tag">JavaScript</span>
+                        <span class="orbit-tag">HTML/CSS</span>
+                        <span class="orbit-tag">C</span>
+                    </div>
+
+                    <div class="orbit orbit-2" data-radius="230">
+                        <span class="orbit-tag">MySQL</span>
+                        <span class="orbit-tag">Oracle</span>
+                        <span class="orbit-tag">Git</span>
+                        <span class="orbit-tag">VS Code</span>
+                        <span class="orbit-tag">Jupyter</span>
+                        <span class="orbit-tag">Eclipse</span>
+                        <span class="orbit-tag">J2EE</span>
+                    </div>
+
+                    <div class="orbit orbit-3" data-radius="300">
+                        <span class="orbit-tag accent">Video Editing</span>
+                        <span class="orbit-tag accent">Motion Graphics</span>
+                        <span class="orbit-tag accent">Cinematography</span>
+                        <span class="orbit-tag accent">Graphic Design</span>
+                        <span class="orbit-tag glow">Docker</span>
+                        <span class="orbit-tag glow">Kubernetes</span>
+                        <span class="orbit-tag glow">CI/CD</span>
+                        <span class="orbit-tag">DSA</span>
+                        <span class="orbit-tag">OOP</span>
+                        <span class="orbit-tag">DBMS</span>
+                        <span class="orbit-tag">OS</span>
+                        <span class="orbit-tag glow">Cloud</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects" id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <span class="section-label">Featured Work</span>
+                    <h2 class="section-title">Projects<br><span class="outline">& Builds</span></h2>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- Project 1: ClearCheck -->
+                    <article class="project-card featured no-overlay" data-project="clearcheck" data-case="clearcheck">
+                        <div class="project-image clearcheck-preview">
+                            <img src="assets/clearcheck1.webp" alt="ClearCheck team demo" class="clearcheck-base">
+                            <img src="assets/clearcheck2.webp" alt="ClearCheck logo" class="clearcheck-hover">
+                            <div class="project-overlay">
+                                <div class="overlay-content">
+                                    <a class="view-project" href="https://abinya.vercel.app/project.html?id=16"
+                                        target="_blank" rel="noopener">View Project</a>
+                                    <button class="case-btn" type="button" data-case-open>Case Study</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-meta">
+                                <span class="project-category">AI/ML • Computer Vision</span>
+                                <span class="project-badge">Team Lead</span>
+                            </div>
+                            <div class="project-head">
+                                <h3 class="project-title">ClearCheck</h3>
+                                <span class="project-status">AI Proctoring Suite</span>
+                            </div>
+                            <p class="project-desc">Advanced AI-powered online exam proctoring with device detection and
+                                multi-face recognition</p>
+                            <div class="project-kpis">
+                                <div class="kpi">
+                                    <span class="kpi-value">92%</span>
+                                    <span class="kpi-label">Accuracy</span>
+                                </div>
+                                <div class="kpi">
+                                    <span class="kpi-value">Top 10</span>
+                                    <span class="kpi-label">HackNation</span>
+                                </div>
+                                <div class="kpi">
+                                    <span class="kpi-value">4</span>
+                                    <span class="kpi-label">Team size</span>
+                                </div>
+                            </div>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>ML</span>
+                                <span>OpenCV</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://abinya.vercel.app/project.html?id=16" target="_blank" rel="noopener"
+                                    class="project-link button-style primary">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                    <span>View Project</span>
+                                </a>
+                                <button class="case-btn button-style" type="button" data-case-open>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                                    </svg>
+                                    <span>Case Study</span>
+                                </button>
+                            </div>
+                            <div class="project-achievements">
+                                <span class="achievement">🏆 Top 10 at HackNation</span>
+                                <span class="achievement">🎯 SOA PROXIMA 2025</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://abinya.vercel.app/project.html?id=16" target="_blank"
+                                    class="project-link primary" data-magnetic>
+                                    <span>Learn More</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M7 7h10v10M7 17L17 7" />
+                                    </svg>
+                                </a>
+                                <button class="case-btn ghost" type="button" data-case-open>Open Case</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2: DejaView -->
+                    <article class="project-card" data-project="dejaview" data-case="dejaview">
+                        <div class="project-image">
+                            <img src="assets/DejaView.webp" alt="DejaView Photo Location">
+                            <div class="project-overlay">
+                                <div class="overlay-content">
+                                    <a class="view-project" href="https://dejaview-qhig.onrender.com/" target="_blank"
+                                        rel="noopener">View Project</a>
+                                    <button class="case-btn" type="button" data-case-open>Case Study</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-meta">
+                                <span class="project-category">Full Stack • Java</span>
+                                <span class="project-badge live">Live Demo</span>
+                            </div>
+                            <div class="project-head">
+                                <h3 class="project-title">DejaView</h3>
+                                <span class="project-status">Location Visualizer</span>
+                            </div>
+                            <p class="project-desc">Photo location visualizer with GPS extraction, interactive maps and
+                                360° Street View</p>
+                            <div class="project-kpis">
+                                <div class="kpi">
+                                    <span class="kpi-value">360°</span>
+                                    <span class="kpi-label">Street View</span>
+                                </div>
+                                <div class="kpi">
+                                    <span class="kpi-value">Zero</span>
+                                    <span class="kpi-label">Image storage</span>
+                                </div>
+                                <div class="kpi">
+                                    <span class="kpi-value">Live</span>
+                                    <span class="kpi-label">Public demo</span>
+                                </div>
+                            </div>
+                            <div class="project-tech">
+                                <span>Java</span>
+                                <span>Servlets</span>
+                                <span>Google Maps API</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/nikhilthesingh/DejaView" target="_blank" rel="noopener"
+                                    class="project-link button-style">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                                    </svg>
+                                    <span>GitHub</span>
+                                </a>
+                                <a href="https://dejaview-qhig.onrender.com/" target="_blank" rel="noopener"
+                                    class="project-link button-style primary">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                    <span>Live Demo</span>
+                                </a>
+                                <button type="button" data-case-open class="project-link button-style video-preview">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polygon points="5 3 19 12 5 21 5 3" />
+                                    </svg>
+                                    <span>Video Demo</span>
+                                </button>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/nikhilthesingh/DejaView" target="_blank"
+                                    class="project-link" data-magnetic>
+                                    <span>GitHub</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                                    </svg>
+                                </a>
+                                <a href="https://dejaview-qhig.onrender.com/" target="_blank"
+                                    class="project-link primary" data-magnetic>
+                                    <span>Live Demo</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                </a>
+                                <button class="case-btn ghost" type="button" data-case-open>Open Case</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3: AppUP -->
+                    <article class="project-card" data-project="appup" data-case="appup">
+                        <div class="project-image">
+                            <img src="assets/AppUP.webp" alt="AppUP Windows Updater" class="project-image-appup">
+                            <div class="project-overlay">
+                                <div class="overlay-content">
+                                    <a class="view-project" href="https://github.com/nikhilthesingh/AppUP"
+                                        target="_blank" rel="noopener">View Project</a>
+                                    <button class="case-btn" type="button" data-case-open>Case Study</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-meta">
+                                <span class="project-category">CLI Tool • Python</span>
+                            </div>
+                            <div class="project-head">
+                                <h3 class="project-title">AppUP</h3>
+                                <span class="project-status">Windows Updater</span>
+                            </div>
+                            <p class="project-desc">Retro matrix-styled CLI tool for updating Windows apps installed
+                                outside of
+                                Microsoft Store</p>
+                            <div class="project-kpis">
+                                <div class="kpi">
+                                    <span class="kpi-value">1,500+</span>
+                                    <span class="kpi-label">Apps supported</span>
+                                </div>
+                                <div class="kpi">
+                                    <span class="kpi-value">70%</span>
+                                    <span class="kpi-label">Less effort</span>
+                                </div>
+                                <div class="kpi">
+                                    <span class="kpi-value">Window 10+</span>
+                                    <span class="kpi-label">Platform</span>
+                                </div>
+                            </div>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>Rich</span>
+                                <span>PyInstaller</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/nikhilthesingh/AppUP" target="_blank" rel="noopener"
+                                    class="project-link button-style">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                                    </svg>
+                                    <span>GitHub</span>
+                                </a>
+                                <a href="https://raw.githubusercontent.com/nikhilthesingh/AppUP/main/AppUP.exe"
+                                    target="_blank" rel="noopener" class="project-link button-style primary">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                        <polyline points="7 10 12 15 17 10" />
+                                        <line x1="12" y1="15" x2="12" y2="3" />
+                                    </svg>
+                                    <span>Download AppUP</span>
+                                </a>
+                                <button type="button" data-case-open class="project-link button-style video-preview">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polygon points="5 3 19 12 5 21 5 3" />
+                                    </svg>
+                                    <span>Video Demo</span>
+                                </button>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/nikhilthesingh/AppUP" target="_blank" class="project-link"
+                                    data-magnetic>
+                                    <span>View on GitHub</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M7 7h10v10M7 17L17 7" />
+                                    </svg>
+                                </a>
+                                <button class="case-btn ghost" type="button" data-case-open>Open Case</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tri Matic Section -->
+        <section class="trimatic" id="trimatic">
+            <div class="trimatic-bg">
+                <div class="trimatic-gradient"></div>
+                <div class="trimatic-grid"></div>
+                <div class="trimatic-logo-bg">
+                    <img src="assets/TriMatic.webp" alt="" class="logo-layer logo-main" aria-hidden="true">
+                    <img src="assets/TriMatic.webp" alt="" class="logo-layer logo-glow" aria-hidden="true">
+                    <img src="assets/TriMatic.webp" alt="" class="logo-layer logo-float" aria-hidden="true">
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="trimatic-header">
+                    <span class="section-number light">05</span>
+                    <span class="section-label light">Creative Venture</span>
+                    <div class="trimatic-title-wrap">
+                        <h2 class="trimatic-title">
+                            <span class="title-small">A World of</span>
+                            <span class="title-main">tri<span class="accent">matic</span></span>
+                        </h2>
+                        <p class="trimatic-tagline">BE THE PRIME</p>
+                    </div>
+                </div>
+
+                <div class="trimatic-content">
+                    <div class="trimatic-intro">
+                        <p class="trimatic-desc">
+                            Tri Matic is my creative production team specializing in video editing, motion graphics, and
+                            brand design. We've built a YouTube presence with <strong>8.7K+ subscribers</strong> and
+                            <strong>3M+ views</strong>.
+                        </p>
+                    </div>
+
+                    <div class="services-showcase">
+                        <div class="service-card glass-card holographic spotlight-effect" data-service="video">
+                            <div class="service-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <polygon points="23 7 16 12 23 17 23 7" />
+                                    <rect x="1" y="5" width="15" height="14" rx="2" />
+                                </svg>
+                            </div>
+                            <h3 class="service-title">Video Editing</h3>
+                            <ul class="service-list">
+                                <li>Short form video edits</li>
+                                <li>Long form content</li>
+                                <li>Trendy/Flashy/Phonk edits</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-card glass-card holographic spotlight-effect" data-service="motion">
+                            <div class="service-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polygon points="10 8 16 12 10 16 10 8" />
+                                </svg>
+                            </div>
+                            <h3 class="service-title">Motion Design</h3>
+                            <ul class="service-list">
+                                <li>Logo animations</li>
+                                <li>Brand intros</li>
+                                <li>Kinetic typography</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-card glass-card holographic spotlight-effect" data-service="brand">
+                            <div class="service-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                    <path d="M2 17l10 5 10-5" />
+                                    <path d="M2 12l10 5 10-5" />
+                                </svg>
+                            </div>
+                            <h3 class="service-title">Brand Creatives</h3>
+                            <ul class="service-list">
+                                <li>Thumbnails & covers</li>
+                                <li>Colour grading LUTs</li>
+                                <li>Aesthetic content</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="trimatic-cta">
+                        <a href="https://bento.me/trimatic" target="_blank" class="trimatic-btn">
+                            <span class="btn-bg"></span>
+                            <span class="btn-text">View Portfolio</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M7 7h10v10M7 17L17 7" />
+                            </svg>
+                        </a>
+                        <a href="https://www.youtube.com/@Tri_Mania" target="_blank" class="youtube-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                            <span>Tri Mania Channel</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section - Horizontal Journey Timeline -->
+        <section class="education-journey-section" id="education">
+            <div class="container">
+                <!-- Compact Header -->
+                <div class="journey-header">
+                    <span class="journey-label">Academic Journey</span>
+                    <h2 class="journey-title">From School to University</h2>
+                </div>
+
+                <!-- Horizontal Scrollable Timeline -->
+                <div class="timeline-track">
+                    <!-- Animated Rocket -->
+                    <div class="rocket-ship">🚀</div>
+
+                    <!-- Journey Path Line -->
+                    <div class="journey-path"></div>
+
+                    <!-- Timeline Stops -->
+                    <div class="timeline-stops">
+
+                        <!-- Stop 1: Class X -->
+                        <div class="timeline-stop">
+                            <div class="stop-marker"></div>
+                            <div class="stop-content">
+                                <img src="assets/SAPS_logo.webp" alt="SAPS" class="stop-logo" />
+                                <div class="stop-info">
+                                    <span class="stop-year">2020</span>
+                                    <h3 class="stop-title">Class X</h3>
+                                    <div class="stop-score">
+                                        <span class="score-big">90.4</span>
+                                        <span class="score-unit">%</span>
+                                    </div>
+                                    <span class="stop-detail">CBSE • 50% Scholarship</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stop 2: Class XII -->
+                        <div class="timeline-stop">
+                            <div class="stop-marker"></div>
+                            <div class="stop-content">
+                                <img src="assets/SAPS_logo.webp" alt="SAPS" class="stop-logo" />
+                                <div class="stop-info">
+                                    <span class="stop-year">2022</span>
+                                    <h3 class="stop-title">Class XII</h3>
+                                    <div class="stop-score">
+                                        <span class="score-big">92.4</span>
+                                        <span class="score-unit">%</span>
+                                    </div>
+                                    <span class="stop-detail">CBSE • Science (PCM)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stop 3: B.Tech (Current) -->
+                        <div class="timeline-stop current-stop">
+                            <div class="stop-marker pulsing"></div>
+                            <div class="stop-content">
+                                <img src="assets/SOA_logo.webp" alt="SOA" class="stop-logo large" />
+                                <div class="stop-info">
+                                    <span class="stop-year">2022-2026</span>
+                                    <h3 class="stop-title">B.Tech CSE</h3>
+                                    <div class="progress-indicator">
+                                        <span class="in-progress">IN PROGRESS</span>
+                                    </div>
+                                    <span class="stop-detail">ITER, SOA University</span>
+                                    <span class="stop-location">Bhubaneswar</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="achievements" id="achievements">
+            <div class="container">
+                <div class="section-header center">
+                    <span class="section-number">06</span>
+                    <span class="section-label">Recognition</span>
+                    <h2 class="section-title">Achievements<br><span class="gradient-text">& Certifications</span></h2>
+                </div>
+
+                <div class="achievement-layout">
+                    <div class="achievement-column">
+                        <div class="achievement-metrics">
+                            <div class="achievement-metric">
+                                <span class="metric-number">3</span>
+                                <span class="metric-label">Competitions</span>
+                            </div>
+                            <div class="achievement-metric">
+                                <span class="metric-number">3</span>
+                                <span class="metric-label">Certifications</span>
+                            </div>
+                            <div class="achievement-metric">
+                                <span class="metric-number">1</span>
+                                <span class="metric-label">Scholarship</span>
+                            </div>
+                        </div>
+
+                        <div class="award-timeline">
+                            <div class="award-track"></div>
+
+                            <div class="award-item trophy">
+                                <div class="award-dot"></div>
+                                <div class="award-card">
+                                    <div class="cert-preview-badge">
+                                        <img src="assets/hacknation.webp" alt="Certificate badge" />
+                                    </div>
+                                    <span class="award-date">2025</span>
+                                    <h3>Top 10 Creative Implementation</h3>
+                                    <p>HackNation — recognized for innovative modern-age problem solution.</p>
+                                    <span class="award-tag">Competition</span>
+                                    <button class="award-preview-btn" data-cert-image="assets/hacknation.webp"
+                                        aria-label="View certificate">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                            <circle cx="12" cy="12" r="3" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="award-item">
+                                <div class="award-dot"></div>
+                                <div class="award-card">
+                                    <span class="award-date">2025</span>
+                                    <h3>SOA PROXIMA Selection</h3>
+                                    <p>Selected for project presentation at India’s largest HR conclave.</p>
+                                    <span class="award-tag">Selection</span>
+                                </div>
+                            </div>
+
+                            <div class="award-item">
+                                <div class="award-dot"></div>
+                                <div class="award-card">
+                                    <div class="cert-preview-badge">
+                                        <img src="assets/codverse.webp" alt="Certificate badge" />
+                                    </div>
+                                    <span class="award-date">2024</span>
+                                    <h3>CodeVerse Semi-finalist</h3>
+                                    <p>Silicon University coding competition — shortlisted in top rounds.</p>
+                                    <span class="award-tag">Competition</span>
+                                    <button class="award-preview-btn" data-cert-image="assets/codverse.webp"
+                                        aria-label="View certificate">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                            <circle cx="12" cy="12" r="3" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="award-item scholarship">
+                                <div class="award-dot"></div>
+                                <div class="award-card">
+                                    <span class="award-date">2020</span>
+                                    <h3>50% Fee Waiver</h3>
+                                    <p>Academic scholarship awarded for Class 10 performance.</p>
+                                    <span class="award-tag">Scholarship</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-column">
+                        <div class="cert-header">
+                            <h3>Certifications</h3>
+                            <p>Verified badges that validate my AI and data science foundations.</p>
+                        </div>
+                        <div class="cert-grid">
+                            <article class="cert-card" data-cursor="View" data-cert="ibm-data-science">
+                                <div class="cert-preview-badge">
+                                    <img src="assets/IBM Data scicne certification.webp" alt="Certificate badge" />
+                                </div>
+                                <div class="cert-meta">
+                                    <span class="cert-date">2025</span>
+                                    <span class="cert-issuer">IBM • Credly</span>
+                                </div>
+                                <h4>IBM Data Science Level 2</h4>
+                                <p>Applied Data Science with Python certification and verified badge.</p>
+                                <div class="cert-tags">
+                                    <span>Data Science</span>
+                                    <span>Python</span>
+                                    <span>Applied ML</span>
+                                </div>
+                                <div class="cert-actions">
+                                    <button class="cert-preview-btn"
+                                        data-cert-image="assets/IBM Data scicne certification.webp"
+                                        aria-label="Preview certificate">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                            <circle cx="12" cy="12" r="3" />
+                                        </svg>
+                                        <span>View</span>
+                                    </button>
+                                    <a href="https://www.credly.com/badges/5f718559-00a8-41d7-afa4-351a8893c314"
+                                        target="_blank" rel="noopener" class="cert-link">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                            <polyline points="15 3 21 3 21 9" />
+                                            <line x1="10" y1="14" x2="21" y2="3" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </article>
+
+                            <article class="cert-card" data-cursor="View" data-cert="mckinsey-forward">
+                                <div class="cert-preview-badge">
+                                    <img src="assets/McKinsey.webp" alt="Certificate badge" />
+                                </div>
+                                <div class="cert-meta">
+                                    <span class="cert-date">2026</span>
+                                    <span class="cert-issuer">McKinsey.org • Forward</span>
+                                </div>
+                                <h4>Forward Program</h4>
+                                <p>Completed the McKinsey.org Forward Program credential and verified badge.</p>
+                                <div class="cert-tags">
+                                    <span>Leadership</span>
+                                    <span>Digital</span>
+                                    <span>Growth</span>
+                                </div>
+                                <div class="cert-actions">
+                                    <button class="cert-preview-btn" data-cert-image="assets/McKinsey.webp"
+                                        aria-label="Preview certificate">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                            <circle cx="12" cy="12" r="3" />
+                                        </svg>
+                                        <span>View</span>
+                                    </button>
+                                    <a href="https://www.credly.com/badges/88d45436-acf5-4368-944a-fe2f7ab00f37/public_url"
+                                        target="_blank" rel="noopener" class="cert-link">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                            <polyline points="15 3 21 3 21 9" />
+                                            <line x1="10" y1="14" x2="21" y2="3" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </article>
+
+                            <article class="cert-card" data-cursor="View" data-cert="ibm-ai">
+                                <div class="cert-preview-badge">
+                                    <img src="assets/IBM Artificial Intelligence.webp" alt="Certificate badge" />
+                                </div>
+                                <div class="cert-meta">
+                                    <span class="cert-date">2025</span>
+                                    <span class="cert-issuer">IBM SkillsBuild</span>
+                                </div>
+                                <h4>AI Fundamentals</h4>
+                                <p>Completed core AI foundations with a verified SkillsBuild badge.</p>
+                                <div class="cert-tags">
+                                    <span>AI Basics</span>
+                                    <span>Modeling</span>
+                                    <span>Ethics</span>
+                                </div>
+                                <div class="cert-actions">
+                                    <button class="cert-preview-btn"
+                                        data-cert-image="assets/IBM Artificial Intelligence.webp"
+                                        aria-label="Preview certificate">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                            <circle cx="12" cy="12" r="3" />
+                                        </svg>
+                                        <span>View</span>
+                                    </button>
+                                    <a href="https://www.credly.com/badges/1ebf73d0-a119-45f9-9bf9-999c6bdce658/public_url"
+                                        target="_blank" rel="noopener" class="cert-link">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                            <polyline points="15 3 21 3 21 9" />
+                                            <line x1="10" y1="14" x2="21" y2="3" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Beyond Logic Section -->
+        <section class="beyond-logic" id="beyond">
+            <div class="beyond-bg">
+                <div class="beyond-orb"></div>
+                <div class="beyond-grid"></div>
+                <div class="beyond-particles" id="beyond-particles"></div>
+                <div class="beyond-noise"></div>
+            </div>
+
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">07</span>
+                    <span class="section-label">Beyond Logic</span>
+                    <h2 class="section-title">Designing<br><span class="gradient-text">for Impact</span></h2>
+                </div>
+
+                <div class="beyond-content">
+                    <div class="beyond-copy">
+                        <h3 class="beyond-title" data-split>Beyond the code.</h3>
+                        <p class="beyond-quote">
+                            I build experiences that feel alive—clean interfaces, intelligent systems, and cinematic
+                            storytelling that convert ideas into momentum.
+                        </p>
+
+                        <div class="beyond-pillars">
+                            <div class="pillar-card">
+                                <span class="pillar-title">Build</span>
+                                <p class="pillar-desc">Full-stack products, AI pipelines, and scalable workflows.</p>
+                            </div>
+                            <div class="pillar-card">
+                                <span class="pillar-title">Design</span>
+                                <p class="pillar-desc">Modern UI/UX, motion-first visuals, and branded storytelling.</p>
+                            </div>
+                            <div class="pillar-card">
+                                <span class="pillar-title">Deliver</span>
+                                <p class="pillar-desc">Rapid prototyping, clean documentation, and polished launches.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="beyond-cta">
+                            <a href="#contact" class="cta-button primary beyond-btn">
+                                <span class="cta-bg"></span>
+                                <span class="cta-text">Start a Collaboration</span>
+                                <span class="cta-arrow">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M7 7h10v10M7 17L17 7" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <a href="#projects" class="cta-button secondary">Explore Builds</a>
+                        </div>
+                    </div>
+
+                    <div class="beyond-metrics">
+                        <div class="metric-card">
+                            <span class="metric-number">8.7K+</span>
+                            <span class="metric-label">YouTube subscribers</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-number">3M+</span>
+                            <span class="metric-label">Content views</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-number">Top 10</span>
+                            <span class="metric-label">HackNation award</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-number">4+</span>
+                            <span class="metric-label">Industries explored</span>
+                        </div>
+
+                        <div class="toolbelt">
+                            <span class="tool-title">Toolbelt</span>
+                            <div class="tool-tags">
+                                <span>Python</span>
+                                <span>Java</span>
+                                <span>OpenCV</span>
+                                <span>GSAP</span>
+                                <span>Figma</span>
+                                <span>DaVinci Resolve</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+
+        <section class="contact" id="contact">
+            <div class="contact-ambient" aria-hidden="true">
+                <span class="contact-orb orb-1"></span>
+                <span class="contact-orb orb-2"></span>
+                <span class="contact-orb orb-3"></span>
+                <span class="contact-gridline"></span>
+            </div>
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-header">
+                        <span class="section-number">08</span>
+                        <span class="section-label">Get in Touch</span>
+                        <h2 class="contact-title">
+                            <span class="title-line">Let's Build</span>
+                            <span class="title-line outline">Something Great.</span>
+                        </h2>
+                        <p class="contact-subtitle">Open to freelance work, collaborations, and bold new ideas.</p>
+                    </div>
+
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <p class="contact-desc">
+                                Whether you need a software solution or creative content, I'm always excited to
+                                collaborate on projects that push boundaries.
+                            </p>
+
+                            <div class="contact-highlights">
+                                <div class="contact-card">
+                                    <span class="card-label">Response time</span>
+                                    <span class="card-value">Within 24 hours</span>
+                                </div>
+                                <div class="contact-card">
+                                    <span class="card-label">Location</span>
+                                    <span class="card-value">Bhubaneswar, India</span>
+                                </div>
+                                <div class="contact-card">
+                                    <span class="card-label">Availability</span>
+                                    <span class="card-value">Open for projects</span>
+                                </div>
+                            </div>
+
+                            <div class="contact-links">
+                                <a href="mailto:nikhilsingh9597@gmail.com" class="contact-link email"
+                                    data-cursor="Email">
+                                    <span class="link-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path
+                                                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                            <polyline points="22,6 12,13 2,6" />
+                                        </svg>
+                                    </span>
+                                    <span class="link-text">nikhilsingh9597@gmail.com</span>
+                                </a>
+
+                                <a href="tel:+917970869003" class="contact-link phone" data-cursor="Call">
+                                    <span class="link-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path
+                                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                        </svg>
+                                    </span>
+                                    <span class="link-text">+91 7970869003</span>
+                                </a>
+                            </div>
+
+                            <div class="social-links">
+                                <a href="https://linkedin.com/in/nikhilthesingh" target="_blank"
+                                    class="social-link linkedin" aria-label="LinkedIn" data-cursor="Open" data-magnetic>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                    </svg>
+                                </a>
+                                <a href="https://github.com/nikhilthesingh" target="_blank" class="social-link github"
+                                    aria-label="GitHub" data-cursor="Open" data-magnetic>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                    </svg>
+                                </a>
+                                <a href="https://instagram.com/trimatic_" target="_blank" class="social-link instagram"
+                                    aria-label="Instagram" data-cursor="Open" data-magnetic>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                    </svg>
+                                </a>
+                                <a href="https://wa.me/+917970869003" target="_blank" class="social-link whatsapp"
+                                    aria-label="WhatsApp" data-cursor="Chat" data-magnetic>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                                    </svg>
+                                </a>
+                            </div>
+
+                            <div class="contact-actions">
+                                <a href="mailto:nikhilsingh9597@gmail.com" class="contact-cta primary" data-magnetic
+                                    data-cursor="Start">Start a Project</a>
+                                <a href="tel:+917970869003" class="contact-cta ghost" data-magnetic
+                                    data-cursor="Call">Quick Call</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-form-card">
+                            <div class="contact-form-header">
+                                <h3>Send a Message</h3>
+                                <p>Share your idea, timeline, or goals. I'll reply with next steps.</p>
+                            </div>
+                            <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit"
+                                method="POST">
+                                <input type="hidden" name="access_key" value="c2478ed7-e523-4f77-b46f-9acbfe4e4705">
+                                <input type="hidden" name="subject" value="New Form Submisson on Nikhil's Portfolio">
+                                <input type="hidden" name="from_name" value="Portfolio Contact Form">
+                                <div class="form-group">
+                                    <input type="text" id="name" name="name" placeholder=" " required>
+                                    <label for="name">Your Name</label>
+                                    <div class="form-line"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" id="email" name="email" placeholder=" " required>
+                                    <label for="email">Email Address</label>
+                                    <div class="form-line"></div>
+                                </div>
+                                <div class="form-group">
+                                    <textarea id="message" name="message" rows="4" placeholder=" " required></textarea>
+                                    <label for="message">Your Message</label>
+                                    <div class="form-line"></div>
+                                </div>
+                                <button type="submit" class="submit-btn" id="submit-btn" data-magnetic
+                                    data-cursor="Send">
+                                    <span class="btn-bg"></span>
+                                    <span class="btn-text">Send Message</span>
+                                    <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path d="M22 2L11 13" />
+                                        <path d="M22 2L15 22L11 13L2 9L22 2Z" />
+                                    </svg>
+                                </button>
+                            </form>
+                            <p class="form-note">Typically replies within 24 hours.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <span class="footer-logo">NK<span class="accent">.</span></span>
+                        <p class="footer-tagline">Developer • Creator • Entrepreneur</p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#about">About</a>
+                        <a href="#education">Education</a>
+                        <a href="#projects">Projects</a>
+                        <a href="#trimatic">Tri Matic</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                    <div class="footer-bottom">
+                        <span class="footer-copyright">© 2026 Nikhil Kumar. Crafted with passion.</span>
+                        <span class="footer-location">Bhubaneswar, India</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <div class="case-modal" id="case-modal" aria-hidden="true">
+        <div class="case-overlay" data-close></div>
+        <div class="case-dialog" role="dialog" aria-modal="true" aria-labelledby="case-title">
+            <button class="case-close" type="button" data-close aria-label="Close case study">
+                <span></span>
+                <span></span>
+            </button>
+            <div class="case-header">
+                <span class="case-label">Case Study</span>
+                <h3 class="case-title" id="case-title">Project Title</h3>
+                <p class="case-subtitle" id="case-subtitle">Project subtitle</p>
+            </div>
+            <div class="case-body">
+                <div class="case-column">
+                    <h4>Highlights</h4>
+                    <ul class="case-list" id="case-highlights"></ul>
+                </div>
+                <div class="case-column case-column-media">
+                    <div class="case-video" id="case-video" style="display: none;"></div>
+                    <h4>Stack & Role</h4>
+                    <div class="case-meta" id="case-meta"></div>
+                </div>
+            </div>
+            <div class="case-actions" id="case-actions"></div>
+        </div>
+    </div>
+
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6" />
+        </svg>
+    </button>
+
+    <!-- Certificate Lightbox Modal -->
+    <div class="cert-lightbox" id="cert-lightbox" aria-hidden="true">
+        <div class="cert-lightbox-overlay"></div>
+        <div class="cert-lightbox-content">
+            <button class="cert-lightbox-close" aria-label="Close certificate view">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+            <div class="cert-lightbox-image-wrap">
+                <img id="cert-lightbox-img" src="" alt="Certificate" />
+            </div>
+            <div class="cert-lightbox-nav">
+                <button class="cert-nav-btn cert-nav-prev" aria-label="Previous certificate">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                </button>
+                <span class="cert-nav-counter"><span id="cert-current">1</span> / <span id="cert-total">1</span></span>
+                <button class="cert-nav-btn cert-nav-next" aria-label="Next certificate">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

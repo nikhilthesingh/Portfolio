@@ -1,0 +1,60 @@
+/* Mobile Performance Optimizations */
+@media (max-width: 768px) {
+
+    /* Disable heavy backdrop filters */
+    .navbar.scrolled,
+    .glass-card,
+    .preloader-note {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(10, 10, 10, 0.98);
+        /* Solid background fallback */
+    }
+
+    /* Reduce blur radius on heavy elements */
+    .hero-gradient {
+        filter: blur(40px);
+        /* Reduced from 100px */
+        opacity: 0.3;
+    }
+
+    .cursor-glow {
+        display: none;
+        /* Hide glow on mobile */
+    }
+
+    /* Simplify shadows */
+    .preloader-line {
+        box-shadow: none;
+    }
+
+    /* Disable some animations */
+    .hero-audio {
+        display: none;
+        /* Hide canvas on mobile */
+    }
+
+    /* Hardware acceleration hints */
+    .hero-content,
+    .project-card,
+    .service-card {
+        will-change: transform, opacity;
+        transform: translateZ(0);
+    }
+
+    /* Remove noise textures */
+    .preloader-noise,
+    .beyond-noise {
+        background-image: none;
+        display: none;
+    }
+}
+
+/* Rendering Optimizations - Removed due to ScrollTrigger conflict */
+/* .experience,
+.projects,
+.skills,
+.trimatic {
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
+} */
