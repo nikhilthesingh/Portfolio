@@ -8,19 +8,16 @@
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
         background: rgba(10, 10, 10, 0.98);
-        /* Solid background fallback */
     }
 
     /* Reduce blur radius on heavy elements */
     .hero-gradient {
         filter: blur(40px);
-        /* Reduced from 100px */
         opacity: 0.3;
     }
 
     .cursor-glow {
         display: none;
-        /* Hide glow on mobile */
     }
 
     /* Simplify shadows */
@@ -31,15 +28,6 @@
     /* Disable some animations */
     .hero-audio {
         display: none;
-        /* Hide canvas on mobile */
-    }
-
-    /* Hardware acceleration hints */
-    .hero-content,
-    .project-card,
-    .service-card {
-        will-change: transform, opacity;
-        transform: translateZ(0);
     }
 
     /* Remove noise textures */
@@ -48,13 +36,47 @@
         background-image: none;
         display: none;
     }
-}
 
-/* Rendering Optimizations - Removed due to ScrollTrigger conflict */
-/* .experience,
-.projects,
-.skills,
-.trimatic {
-    content-visibility: auto;
-    contain-intrinsic-size: 800px;
-} */
+    /* Disable backdrop-filter on play-items & other elements */
+    .play-item,
+    .orbit-tag,
+    .hero-shell,
+    .identity-card,
+    .hero-audio-card,
+    .pillar-card,
+    .constellation-core {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    /* Disable custom cursor entirely on mobile */
+    .custom-cursor {
+        display: none !important;
+    }
+
+    /* Simplify complex gradients on contact orbs */
+    .contact-orb {
+        filter: blur(20px);
+        opacity: 0.2;
+    }
+
+    /* Reduce box-shadow complexity */
+    .project-card:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .service-card:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Disable decoration animations */
+    .decoration-circle,
+    .decoration-dots {
+        display: none;
+    }
+
+    /* Simplify card spotlight effect on mobile */
+    .card-spotlight::after {
+        display: none;
+    }
+}

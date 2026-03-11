@@ -46,12 +46,12 @@ function initLenis() {
         infinite: false
     });
 
-    // Connect Lenis to GSAP
+    // Connect Lenis to GSAP (single RAF loop shared with GSAP ticker)
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => {
         lenis.raf(time * 1000);
     });
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(500, 33);
 
     // Stop scroll during preloader
     lenis.stop();
@@ -84,8 +84,22 @@ function initCustomCursor() {
         mouseY = e.clientY;
     }, { passive: true });
 
-    // Smooth cursor animation
+    // Smooth cursor animation with idle detection
+    let cursorMoving = false;
+    let cursorIdleTimer = null;
+
+    document.addEventListener('mousemove', () => {
+        if (!cursorMoving) {
+            cursorMoving = true;
+            animateCursor();
+        }
+        clearTimeout(cursorIdleTimer);
+        cursorIdleTimer = setTimeout(() => { cursorMoving = false; }, 100);
+    }, { passive: true });
+
     function animateCursor() {
+        if (!cursorMoving) return;
+
         const dx = mouseX - lastMouseX;
         const dy = mouseY - lastMouseY;
         const speed = Math.min(Math.hypot(dx, dy), 60);
@@ -124,7 +138,6 @@ function initCustomCursor() {
 
         requestAnimationFrame(animateCursor);
     }
-    animateCursor();
 
     // Hover effects
     const interactiveElements = document.querySelectorAll('a, button, .project-card, .service-card, .about-card, .about-fact, .achievement-card, .award-card, .cert-card, .achievement-metric, .metric-card, .pillar-card, .play-item, .case-btn');
@@ -224,7 +237,7 @@ function initAudioReactiveHero() {
             const x = i * barWidth;
             const y = height - barHeight - 40;
 
-            ctx.fillStyle = `rgba(255, 77, 0, ${0.15 + value * 0.6})`;
+            ctx.fillStyle = `rgba(255, 107, 0, ${0.15 + value * 0.6})`;
             ctx.fillRect(x, y, barWidth * 0.6, barHeight);
         }
     };
@@ -302,13 +315,31 @@ function initHeroPlayground() {
         targetY = y * 30;
     };
 
-    playground.addEventListener('mousemove', updateTarget, { passive: true });
     playground.addEventListener('mouseleave', () => {
         targetX = 0;
         targetY = 0;
     });
 
-    const animate = () => {
+    let playgroundActive = false;
+    let playgroundIdleTimer = null;
+
+    const startPlayground = () => {
+        if (!playgroundActive) {
+            playgroundActive = true;
+            animatePlayground();
+        }
+        clearTimeout(playgroundIdleTimer);
+        playgroundIdleTimer = setTimeout(() => { playgroundActive = false; }, 200);
+    };
+
+    playground.addEventListener('mousemove', (e) => {
+        updateTarget(e);
+        startPlayground();
+    }, { passive: true });
+
+    function animatePlayground() {
+        if (!playgroundActive) return;
+
         currentX += (targetX - currentX) * 0.08;
         currentY += (targetY - currentY) * 0.08;
 
@@ -321,10 +352,8 @@ function initHeroPlayground() {
             item.style.transform = `translate(${currentX * depth}px, ${currentY * depth}px)`;
         });
 
-        requestAnimationFrame(animate);
-    };
-
-    animate();
+        requestAnimationFrame(animatePlayground);
+    }
 }
 
 /* ========================================
@@ -530,8 +559,10 @@ function initNavigation() {
     navToggle.addEventListener('click', () => {
         navToggle.classList.toggle('active');
         mobileMenu.classList.toggle('active');
+        const isOpen = mobileMenu.classList.contains('active');
+        navToggle.setAttribute('aria-expanded', isOpen);
 
-        if (mobileMenu.classList.contains('active')) {
+        if (isOpen) {
             gsap.fromTo('.mobile-link',
                 { y: 50, opacity: 0 },
                 { y: 0, opacity: 1, stagger: 0.1, duration: 0.6, ease: 'power4.out' }
@@ -547,6 +578,7 @@ function initNavigation() {
         link.addEventListener('click', () => {
             navToggle.classList.remove('active');
             mobileMenu.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
             if (lenis) lenis.start();
         });
     });
@@ -906,77 +938,21 @@ function initContactSection() {
 /* ========================================
    Hero Particles
    ======================================== */
-function createHeroParticles() {
-    const container = document.getElementById('hero-particles');
-    if (!container) return;
-
-    const particleCount = 30;
-
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.cssText = `
-            position: absolute;
-            width: ${Math.random() * 3 + 1}px;
-            height: ${Math.random() * 3 + 1}px;
-            background: rgba(255, 77, 0, ${Math.random() * 0.5 + 0.2});
-            border-radius: 50%;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            pointer-events: none;
-        `;
-        container.appendChild(particle);
-
-        // Animate particle
-        gsap.to(particle, {
-            y: -100 - Math.random() * 100,
-            x: (Math.random() - 0.5) * 100,
-            opacity: 0,
-            duration: 3 + Math.random() * 3,
-            repeat: -1,
-            delay: Math.random() * 3,
-            ease: 'none'
-        });
-    }
-}
+/* createHeroParticles removed — replaced by canvas-based ParticleSystem
+   which is more efficient than 30 individual DOM elements with GSAP tweens */
+function createHeroParticles() { /* handled by initParticleSystems */ }
 
 /* ========================================
    Beyond Particles
    ======================================== */
-function createBeyondParticles() {
-    const container = document.getElementById('beyond-particles');
-    if (!container) return;
-
-    const particleCount = 20;
-
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle orange';
-        const size = Math.random() * 6 + 3;
-        particle.style.cssText = `
-            width: ${size}px;
-            height: ${size}px;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            opacity: ${Math.random() * 0.5 + 0.2};
-        `;
-        container.appendChild(particle);
-
-        gsap.to(particle, {
-            y: -120 - Math.random() * 150,
-            x: (Math.random() - 0.5) * 120,
-            duration: 6 + Math.random() * 4,
-            repeat: -1,
-            delay: Math.random() * 4,
-            ease: 'none'
-        });
-    }
-}
+/* createBeyondParticles removed — replaced by canvas-based ParticleSystem */
+function createBeyondParticles() { /* handled by initParticleSystems */ }
 
 /* ========================================
    Magnetic Buttons
    ======================================== */
 function initMagneticButtons() {
+    if (window.matchMedia('(hover: none)').matches) return;
     const buttons = document.querySelectorAll('.cta-button, .trimatic-btn, .submit-btn, .project-link.primary, .back-to-top');
 
     buttons.forEach(btn => {
@@ -1095,8 +1071,6 @@ function initCaseStudyModal() {
                 </iframe>
             `;
             videoContainer.style.display = 'block';
-
-            videoContainer.style.display = 'block';
         } else {
             videoContainer.style.display = 'none';
             videoContainer.innerHTML = '';
@@ -1137,6 +1111,7 @@ function initCaseStudyModal() {
    Spotlight Hover Effect
    ======================================== */
 function initSpotlightHover() {
+    if (window.matchMedia('(hover: none)').matches) return;
     const cards = document.querySelectorAll('.project-card, .about-card, .about-fact, .service-card, .achievement-card, .award-card, .cert-card, .achievement-metric, .skill-category, .pillar-card, .metric-card');
     if (!cards.length) return;
 
@@ -1291,6 +1266,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start preloader
     initPreloader();
 
+    // Safety timeout: if preloader hasn't finished in 8s, force-show content
+    setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        if (preloader && !preloader.classList.contains('hidden')) {
+            preloader.classList.add('hidden');
+            document.getElementById('main')?.classList.add('visible');
+            if (window.lenis) lenis.start();
+        }
+    }, 8000);
+
     // Section animations (will trigger on scroll)
     initSectionHeaders();
     initAboutSection();
@@ -1301,6 +1286,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initAchievementsSection();
     initBeyondLogicSection();
     initContactSection();
+
+    // Scroll-driven effects
+    initAllScrollEffects();
 });
 
 /* ========================================
@@ -1534,10 +1522,8 @@ function initAllScrollEffects() {
     initParallaxEffects();
 }
 
-// Call scroll effects on DOMContentLoaded
-document.addEventListener('DOMContentLoaded', () => {
-    initAllScrollEffects();
-});
+// Scroll effects are initialized once in the main DOMContentLoaded handler above
+// (Removed duplicate DOMContentLoaded listener)
 
 // Handle page visibility
 document.addEventListener('visibilitychange', () => {
@@ -1550,10 +1536,14 @@ document.addEventListener('visibilitychange', () => {
     }
 });
 
-// Refresh ScrollTrigger on resize
+// Refresh ScrollTrigger on resize (debounced to avoid excessive recalc)
+let resizeTimer = null;
 window.addEventListener('resize', () => {
-    ScrollTrigger.refresh();
-    initSkillConstellation();
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        ScrollTrigger.refresh();
+        initSkillConstellation();
+    }, 250);
 });
 
 /* ========================================
@@ -1565,8 +1555,8 @@ window.addEventListener('resize', () => {
    3D Card Tilt Effect
    ======================================== */
 function init3DTilt() {
+    if (window.matchMedia('(hover: none)').matches) return;
     const cards = document.querySelectorAll('.service-card, .cert-card, .pillar-card');
-
     cards.forEach(card => {
         let rect = null;
         let rafId = null;
@@ -1676,117 +1666,23 @@ class TextScramble {
     }
 }
 
-function initTextScramble() {
-    const scrambleElements = document.querySelectorAll('.hero-title .title-word');
-
-    scrambleElements.forEach((el, index) => {
-        const fx = new TextScramble(el);
-        const text = el.innerText;
-
-        setTimeout(() => {
-            fx.setText(text);
-        }, index * 200);
-
-        el.addEventListener('mouseenter', () => {
-            fx.setText(text);
-        });
-    });
-}
+/* initTextScramble disabled — innerHTML manipulation on hero title words
+   conflicts with GSAP entrance animation causing visual fighting */
+function initTextScramble() { /* disabled for performance */ }
 
 /* ========================================
    Particle Trail System
    ======================================== */
-function initParticleTrail() {
-    let particles = [];
-    const maxParticles = 15;
-    let lastSpawn = 0;
-    let lastX = 0;
-    let lastY = 0;
-    let rafId = null;
-
-    const spawnParticle = (now) => {
-        if (particles.length < maxParticles && now - lastSpawn >= 60) {
-            const particle = document.createElement('div');
-            particle.className = 'particle-trail';
-            particle.style.left = lastX + 'px';
-            particle.style.top = lastY + 'px';
-            document.body.appendChild(particle);
-            particles.push(particle);
-            lastSpawn = now;
-
-            setTimeout(() => {
-                particle.remove();
-                particles = particles.filter(p => p !== particle);
-            }, 800);
-        }
-        rafId = null;
-    };
-
-    document.addEventListener('mousemove', (e) => {
-        lastX = e.clientX;
-        lastY = e.clientY;
-        if (!rafId) rafId = requestAnimationFrame(spawnParticle);
-    }, { passive: true });
-}
+/* initParticleTrail removed — DOM element creation on every mouse move
+   causes GC pressure and layout thrashing, major source of jitter */
+function initParticleTrail() { /* disabled for performance */ }
 
 /* ========================================
    Cursor Trail Effect
    ======================================== */
-function initCursorTrail() {
-    const trails = [];
-    const maxTrails = 10;
-    let mouseX = 0;
-    let mouseY = 0;
-    let lastSpawn = 0;
-    let active = false;
-    let idleTimer = null;
-
-    const start = () => {
-        if (active) return;
-        active = true;
-        requestAnimationFrame(tick);
-    };
-
-    const stop = () => {
-        active = false;
-    };
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        start();
-        if (idleTimer) clearTimeout(idleTimer);
-        idleTimer = setTimeout(stop, 120);
-    }, { passive: true });
-
-    function createTrail() {
-        if (trails.length < maxTrails) {
-            const trail = document.createElement('div');
-            trail.className = 'cursor-trail';
-            trail.style.left = mouseX + 'px';
-            trail.style.top = mouseY + 'px';
-
-            document.body.appendChild(trail);
-            trails.push(trail);
-
-            setTimeout(() => {
-                trail.remove();
-                const index = trails.indexOf(trail);
-                if (index > -1) trails.splice(index, 1);
-            }, 1000);
-        }
-    }
-
-    const tick = (now) => {
-        if (!active) return;
-
-        if (now - lastSpawn >= 60) {
-            createTrail();
-            lastSpawn = now;
-        }
-        requestAnimationFrame(tick);
-    };
-}
+/* initCursorTrail removed — same DOM thrashing issue as particle trail.
+   Custom cursor already provides visual feedback. */
+function initCursorTrail() { /* disabled for performance */ }
 
 /* ========================================
    Advanced Particle System
@@ -1797,7 +1693,7 @@ class ParticleSystem {
         this.particles = [];
         this.particleCount = options.count || 50;
         this.particleSize = options.size || 2;
-        this.particleColor = options.color || 'rgba(255, 77, 0, 0.6)';
+        this.particleColor = options.color || 'rgba(255, 107, 0, 0.6)';
         this.speed = options.speed || 0.5;
         this.running = true;
         this.rafId = null;
@@ -1859,7 +1755,7 @@ class ParticleSystem {
 
                 if (distance < 100) {
                     this.ctx.beginPath();
-                    this.ctx.strokeStyle = `rgba(255, 77, 0, ${0.2 * (1 - distance / 100)})`;
+                    this.ctx.strokeStyle = `rgba(255, 107, 0, ${0.2 * (1 - distance / 100)})`;
                     this.ctx.lineWidth = 0.5;
                     this.ctx.moveTo(particle.x, particle.y);
                     this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
@@ -1906,7 +1802,7 @@ function initParticleSystems() {
 
     if (heroParticles) {
         const heroSystem = new ParticleSystem(heroParticles, {
-            count: 60,
+            count: 30,
             size: 2,
             speed: 0.3
         });
@@ -1915,7 +1811,7 @@ function initParticleSystems() {
 
     if (beyondParticles) {
         const beyondSystem = new ParticleSystem(beyondParticles, {
-            count: 40,
+            count: 20,
             size: 1.5,
             speed: 0.4
         });
@@ -2018,6 +1914,7 @@ function initSmoothReveal() {
    Dynamic Background Effect
    ======================================== */
 function initDynamicBackground() {
+    if (window.matchMedia('(hover: none)').matches) return;
     const hero = document.querySelector('.hero');
     if (!hero) return;
 
@@ -2099,37 +1996,8 @@ function initTypewriterEffect() {
 /* ========================================
    Magnetic Elements
    ======================================== */
-function enhanceMagneticElements() {
-    const magneticElements = document.querySelectorAll('[data-magnetic]');
-
-    magneticElements.forEach(el => {
-        el.addEventListener('mousemove', (e) => {
-            const rect = el.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-
-            const strength = 0.3;
-            const offsetX = x * strength;
-            const offsetY = y * strength;
-
-            gsap.to(el, {
-                x: offsetX,
-                y: offsetY,
-                duration: 0.4,
-                ease: 'power2.out'
-            });
-        }, { passive: true });
-
-        el.addEventListener('mouseleave', () => {
-            gsap.to(el, {
-                x: 0,
-                y: 0,
-                duration: 0.6,
-                ease: 'elastic.out(1, 0.3)'
-            });
-        });
-    });
-}
+/* enhanceMagneticElements disabled — duplicates initMagneticButtons + initCustomCursor magnetic handling */
+function enhanceMagneticElements() { /* already handled by initMagneticButtons and initCustomCursor */ }
 
 /* ========================================
    Parallax Image Effect
@@ -2166,71 +2034,16 @@ function initLiquidButtons() {
 /* ========================================
    Enhanced Scroll Animations
    ======================================== */
-function initEnhancedScrollAnimations() {
-    // Fade in sections
-    gsap.utils.toArray('section')
-        .filter(section => !section.classList.contains('projects') && !section.classList.contains('trimatic'))
-        .forEach(section => {
-            gsap.from(section, {
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 80%',
-                    end: 'top 50%',
-                    toggleActions: 'play none none none'
-                }
-            });
-        });
-}
+/* initEnhancedScrollAnimations removed — generic section fade-in
+   conflicts with specific GSAP section animations causing double animation */
+function initEnhancedScrollAnimations() { /* disabled — conflicts with section-specific animations */ }
 
 /* ========================================
    Image Hover Distortion
    ======================================== */
-function initImageDistortion() {
-    const images = document.querySelectorAll('.project-image');
-
-    images.forEach(img => {
-        let rect = null;
-        let rafId = null;
-        let lastX = 0;
-        let lastY = 0;
-        const child = img.querySelector('img');
-        if (!child) return;
-
-        const updateDistortion = () => {
-            if (!rect) {
-                rafId = null;
-                return;
-            }
-            const x = ((lastX - rect.left) / rect.width - 0.5) * 2;
-            const y = ((lastY - rect.top) / rect.height - 0.5) * 2;
-            child.style.transform = `scale(1.1) translate(${x * 10}px, ${y * 10}px)`;
-            rafId = null;
-        };
-
-        img.addEventListener('mouseenter', () => {
-            rect = img.getBoundingClientRect();
-        });
-
-        img.addEventListener('mousemove', (e) => {
-            if (!rect) rect = img.getBoundingClientRect();
-            lastX = e.clientX;
-            lastY = e.clientY;
-            if (!rafId) rafId = requestAnimationFrame(updateDistortion);
-        }, { passive: true });
-
-        img.addEventListener('mouseleave', () => {
-            rect = null;
-            if (rafId) {
-                cancelAnimationFrame(rafId);
-                rafId = null;
-            }
-            child.style.transform = 'scale(1) translate(0, 0)';
-        });
-    });
-}
+/* initImageDistortion disabled — conflicts with CSS hover scale on project images.
+   Both set .project-image img transform causing jitter. CSS handles zoom. */
+function initImageDistortion() { /* disabled for performance */ }
 
 /* ========================================
    Initialize All Modern Effects
@@ -2263,6 +2076,7 @@ function initModernEffects() {
    Floating Certificate Preview (3D Hover)
    ======================================== */
 function initFloatingCertPreview() {
+    if (window.matchMedia('(hover: none)').matches) return;
     // Find all elements with certificate images
     const cardsWithCerts = document.querySelectorAll('[data-cert-image]');
 
@@ -2316,22 +2130,22 @@ function initFloatingCertPreview() {
                 ),
                 radial-gradient(
                     circle at ${x}px ${y}px,
-                    rgba(255, 77, 0, 0.12) 0%,
-                    rgba(255, 77, 0, 0.08) 150px,
-                    rgba(255, 77, 0, 0.04) 250px,
+                    rgba(255, 107, 0, 0.12) 0%,
+                    rgba(255, 107, 0, 0.08) 150px,
+                    rgba(255, 107, 0, 0.04) 250px,
                     transparent 400px
                 ),
                 radial-gradient(
                     circle at ${x}px ${y}px,
-                    rgba(255, 140, 60, 0.06) 0%,
-                    rgba(255, 140, 60, 0.03) 200px,
+                    rgba(230, 196, 64, 0.06) 0%,
+                    rgba(230, 196, 64, 0.03) 200px,
                     transparent 350px
                 )
             `;
 
             spotlight.style.boxShadow = `
-                inset 0 0 150px rgba(255, 77, 0, 0.08),
-                inset 0 0 80px rgba(255, 140, 60, 0.05)
+                inset 0 0 150px rgba(255, 107, 0, 0.08),
+                inset 0 0 80px rgba(230, 196, 64, 0.05)
             `;
             rafId = null;
         };
