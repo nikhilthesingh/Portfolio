@@ -701,6 +701,32 @@ function initSkillsSection() {
         }
     );
 
+    if (window.matchMedia('(max-width: 768px)').matches) {
+        gsap.fromTo('.orbit-tag',
+            { y: 18, opacity: 0, scale: 0.94 },
+            {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                duration: 0.45,
+                stagger: 0.03,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.skills-constellation',
+                    start: 'top 82%',
+                    once: true
+                }
+            }
+        );
+
+        document.querySelectorAll('.orbit-tag').forEach((tag) => {
+            tag.addEventListener('touchstart', () => {
+                tag.classList.add('tag-tap');
+                setTimeout(() => tag.classList.remove('tag-tap'), 380);
+            }, { passive: true });
+        });
+    }
+
     initSkillConstellation();
 }
 
@@ -1284,6 +1310,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initProjectsSection();
     initTrimaticSection();
     initAchievementsSection();
+    initCertificateLightbox();
+    initFloatingCertPreview();
     initBeyondLogicSection();
     initContactSection();
 
@@ -2076,7 +2104,7 @@ function initModernEffects() {
    Floating Certificate Preview (3D Hover)
    ======================================== */
 function initFloatingCertPreview() {
-    if (window.matchMedia('(hover: none)').matches) return;
+    const supportsHover = !window.matchMedia('(hover: none)').matches;
     // Find all elements with certificate images
     const cardsWithCerts = document.querySelectorAll('[data-cert-image]');
 
@@ -2092,9 +2120,12 @@ function initFloatingCertPreview() {
         card.style.setProperty('--cert-bg-image', `url('${certImage}')`);
 
         // Create spotlight reveal element
-        const spotlight = document.createElement('div');
-        spotlight.className = 'cert-spotlight-reveal';
-        card.appendChild(spotlight);
+        let spotlight = card.querySelector('.cert-spotlight-reveal');
+        if (!spotlight) {
+            spotlight = document.createElement('div');
+            spotlight.className = 'cert-spotlight-reveal';
+            card.appendChild(spotlight);
+        }
 
         let isHovering = false;
         let rect = null;
@@ -2150,43 +2181,48 @@ function initFloatingCertPreview() {
             rafId = null;
         };
 
-        // Track mouse movement
-        card.addEventListener('mouseenter', () => {
-            isHovering = true;
-            rect = card.getBoundingClientRect();
-        });
+        if (supportsHover) {
+            // Track mouse movement only on hover-capable devices.
+            card.addEventListener('mouseenter', () => {
+                isHovering = true;
+                rect = card.getBoundingClientRect();
+            });
 
-        card.addEventListener('mousemove', (e) => {
-            if (!isHovering) return;
-            if (!rect) rect = card.getBoundingClientRect();
-            lastX = e.clientX;
-            lastY = e.clientY;
-            if (!rafId) rafId = requestAnimationFrame(updateSpotlight);
-        }, { passive: true });
+            card.addEventListener('mousemove', (e) => {
+                if (!isHovering) return;
+                if (!rect) rect = card.getBoundingClientRect();
+                lastX = e.clientX;
+                lastY = e.clientY;
+                if (!rafId) rafId = requestAnimationFrame(updateSpotlight);
+            }, { passive: true });
 
-        card.addEventListener('mouseleave', () => {
-            isHovering = false;
-            rect = null;
-            if (rafId) {
-                cancelAnimationFrame(rafId);
-                rafId = null;
-            }
-            spotlight.style.clipPath = '';
-            spotlight.style.background = '';
-            spotlight.style.boxShadow = '';
-        });
+            card.addEventListener('mouseleave', () => {
+                isHovering = false;
+                rect = null;
+                if (rafId) {
+                    cancelAnimationFrame(rafId);
+                    rafId = null;
+                }
+                spotlight.style.clipPath = '';
+                spotlight.style.background = '';
+                spotlight.style.boxShadow = '';
+            });
+        }
     });
 
     // Add CSS for background images
-    const style = document.createElement('style');
-    style.textContent = `
-        .cert-card::after,
-        .award-card::after,
-        .timeline-content::after {
-            background-image: var(--cert-bg-image);
-        }
-    `;
-    document.head.appendChild(style);
+    if (!document.getElementById('cert-preview-bg-style')) {
+        const style = document.createElement('style');
+        style.id = 'cert-preview-bg-style';
+        style.textContent = `
+            .cert-card::after,
+            .award-card::after,
+            .timeline-content::after {
+                background-image: var(--cert-bg-image);
+            }
+        `;
+        document.head.appendChild(style);
+    }
 
 }
 
@@ -2305,20 +2341,44 @@ function initEducationTimeline() {
         return;
     }
 
-    // Path draw + rocket travel synced to scroll
-    gsap.set('.journey-path', { scaleX: 0, transformOrigin: 'left center' });
-    gsap.set('.rocket-ship', { left: '5%' });
+    const isMobileTimeline = window.matchMedia('(max-width: 1024px)').matches;
 
-    gsap.timeline({
-        scrollTrigger: {
-            trigger: '.education-journey-section',
-            start: 'top 45%',
-            end: 'center 5%',
-            scrub: 1
-        }
-    })
-        .to('.journey-path', { scaleX: 1, duration: 1, ease: 'none' }, 0)
-        .to('.rocket-ship', { left: '95%', rotate: 5, duration: 1, ease: 'none' }, 0);
+    // Path draw + rocket travel synced to scroll
+    if (isMobileTimeline) {
+        gsap.set('.journey-path', { scaleY: 0, transformOrigin: 'center top' });
+        gsap.set('.rocket-ship', {
+            left: '50%',
+            top: '8%',
+            xPercent: -50,
+            yPercent: -50,
+            rotate: 90
+        });
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: '.education-journey-section',
+                start: 'top 70%',
+                end: 'bottom 25%',
+                scrub: 1
+            }
+        })
+            .to('.journey-path', { scaleY: 1, duration: 1, ease: 'none' }, 0)
+            .to('.rocket-ship', { top: '92%', rotate: 90, duration: 1, ease: 'none' }, 0);
+    } else {
+        gsap.set('.journey-path', { scaleX: 0, transformOrigin: 'left center' });
+        gsap.set('.rocket-ship', { left: '5%' });
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: '.education-journey-section',
+                start: 'top 45%',
+                end: 'center 5%',
+                scrub: 1
+            }
+        })
+            .to('.journey-path', { scaleX: 1, duration: 1, ease: 'none' }, 0)
+            .to('.rocket-ship', { left: '95%', rotate: 5, duration: 1, ease: 'none' }, 0);
+    }
 
     // Reveal timeline stops
     gsap.to('.timeline-stop', {
