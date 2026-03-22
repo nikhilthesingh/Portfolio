@@ -585,6 +585,179 @@ function initNavigation() {
 }
 
 /* ========================================
+   Active Navigation State
+   ======================================== */
+function initActiveNavState() {
+    const navLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
+    const mobileLinks = Array.from(document.querySelectorAll('.mobile-link[href^="#"]'));
+    if (!navLinks.length) return;
+
+    const setActive = (id) => {
+        const hash = `#${id}`;
+        navLinks.forEach((link) => {
+            link.classList.toggle('active', link.getAttribute('href') === hash);
+        });
+        mobileLinks.forEach((link) => {
+            link.classList.toggle('active', link.getAttribute('href') === hash);
+        });
+    };
+
+    const sections = navLinks
+        .map((link) => {
+            const target = document.querySelector(link.getAttribute('href'));
+            return target ? { id: target.id, target } : null;
+        })
+        .filter(Boolean);
+
+    if (!sections.length || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        let best = null;
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            if (!best || entry.intersectionRatio > best.intersectionRatio) {
+                best = entry;
+            }
+        });
+        if (best && best.target.id) {
+            setActive(best.target.id);
+        }
+    }, {
+        rootMargin: '-35% 0px -45% 0px',
+        threshold: [0.2, 0.35, 0.55, 0.75]
+    });
+
+    sections.forEach(({ target }) => observer.observe(target));
+}
+
+/* ========================================
+   Section Mood System
+   ======================================== */
+function initSectionMoodSystem() {
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) return;
+
+    const moods = {
+        hero: ['rgba(255, 108, 24, 0.2)', 'rgba(255, 190, 86, 0.12)'],
+        about: ['rgba(255, 160, 92, 0.18)', 'rgba(255, 235, 158, 0.1)'],
+        experience: ['rgba(255, 120, 50, 0.2)', 'rgba(220, 170, 62, 0.12)'],
+        skills: ['rgba(255, 142, 64, 0.18)', 'rgba(125, 255, 179, 0.08)'],
+        projects: ['rgba(255, 118, 42, 0.2)', 'rgba(255, 208, 119, 0.1)'],
+        trimatic: ['rgba(255, 94, 0, 0.2)', 'rgba(255, 191, 91, 0.13)'],
+        education: ['rgba(255, 130, 60, 0.17)', 'rgba(0, 255, 136, 0.08)'],
+        achievements: ['rgba(255, 114, 40, 0.2)', 'rgba(100, 150, 255, 0.11)'],
+        beyond: ['rgba(255, 104, 28, 0.2)', 'rgba(255, 190, 86, 0.12)'],
+        contact: ['rgba(255, 106, 38, 0.18)', 'rgba(255, 218, 132, 0.12)']
+    };
+
+    const sections = [
+        'hero',
+        'about',
+        'experience',
+        'skills',
+        'projects',
+        'trimatic',
+        'education',
+        'achievements',
+        'beyond',
+        'contact'
+    ];
+
+    const root = document.documentElement;
+    const setMood = (key) => {
+        const values = moods[key];
+        if (!values) return;
+        gsap.to(root, {
+            '--mood-a': values[0],
+            '--mood-b': values[1],
+            duration: 0.8,
+            overwrite: true,
+            ease: 'power2.out'
+        });
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (!visible.length) return;
+        const key = visible[0].target.dataset.mood;
+        setMood(key);
+    }, {
+        rootMargin: '-30% 0px -35% 0px',
+        threshold: [0.2, 0.5, 0.8]
+    });
+
+    sections.forEach((id) => {
+        const section = document.getElementById(id);
+        if (!section) return;
+        section.dataset.mood = id;
+        observer.observe(section);
+    });
+}
+
+/* ========================================
+   Project Card Motion
+   ======================================== */
+function initProjectCardMotion() {
+    if (prefersReducedMotion || window.matchMedia('(hover: none)').matches) return;
+
+    const cards = document.querySelectorAll('.project-card');
+    cards.forEach((card) => {
+        let rect;
+        let rafId = null;
+        let pointerX = 0;
+        let pointerY = 0;
+
+        const update = () => {
+            if (!rect) {
+                rafId = null;
+                return;
+            }
+
+            const x = pointerX - rect.left;
+            const y = pointerY - rect.top;
+            const dx = (x / rect.width) - 0.5;
+            const dy = (y / rect.height) - 0.5;
+
+            card.style.setProperty('--card-tilt-x', `${(-dy * 7).toFixed(2)}deg`);
+            card.style.setProperty('--card-tilt-y', `${(dx * 9).toFixed(2)}deg`);
+            card.style.setProperty('--spot-x', `${x.toFixed(1)}px`);
+            card.style.setProperty('--spot-y', `${y.toFixed(1)}px`);
+            rafId = null;
+        };
+
+        card.addEventListener('mouseenter', () => {
+            rect = card.getBoundingClientRect();
+            card.classList.add('card-motion');
+        });
+
+        card.addEventListener('mousemove', (event) => {
+            if (!rect) rect = card.getBoundingClientRect();
+            pointerX = event.clientX;
+            pointerY = event.clientY;
+
+            if (!rafId) {
+                rafId = requestAnimationFrame(update);
+            }
+        }, { passive: true });
+
+        card.addEventListener('mouseleave', () => {
+            rect = null;
+            card.classList.remove('card-motion');
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
+            card.style.setProperty('--card-tilt-x', '0deg');
+            card.style.setProperty('--card-tilt-y', '0deg');
+            card.style.setProperty('--spot-x', '50%');
+            card.style.setProperty('--spot-y', '50%');
+        });
+    });
+}
+
+/* ========================================
    About Section - Text Reveal
    ======================================== */
 function initAboutSection() {
@@ -738,6 +911,7 @@ function initSkillConstellation() {
     if (!orbits.length) return;
 
     if (window.innerWidth < 768) {
+        initMobileSkillTicker(orbits);
         orbits.forEach(orbit => {
             orbit.style.removeProperty('width');
             orbit.style.removeProperty('height');
@@ -751,6 +925,8 @@ function initSkillConstellation() {
         });
         return;
     }
+
+    resetMobileSkillTicker(orbits);
 
     orbits.forEach(orbit => {
         const radius = parseInt(orbit.dataset.radius || '180', 10);
@@ -773,6 +949,55 @@ function initSkillConstellation() {
         orbit.style.left = '50%';
         orbit.style.top = '50%';
         orbit.style.transform = 'translate(-50%, -50%)';
+    });
+}
+
+function initMobileSkillTicker(orbits) {
+    orbits.forEach((orbit, index) => {
+        let track = orbit.querySelector('.orbit-track');
+
+        if (!track) {
+            track = document.createElement('div');
+            track.className = 'orbit-track';
+            const directTags = Array.from(orbit.querySelectorAll(':scope > .orbit-tag'));
+            directTags.forEach((tag) => track.appendChild(tag));
+            orbit.appendChild(track);
+        }
+
+        if (track.dataset.cloned !== 'true') {
+            const baseTags = Array.from(track.querySelectorAll('.orbit-tag'));
+            baseTags.forEach((tag) => {
+                const clone = tag.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                clone.setAttribute('data-dup', 'true');
+                track.appendChild(clone);
+            });
+            track.dataset.cloned = 'true';
+        }
+
+        orbit.classList.add('mobile-ticker');
+        orbit.style.setProperty('--lane-speed', `${18 + index * 4}s`);
+        orbit.style.setProperty('--lane-direction', index % 2 === 0 ? 'normal' : 'reverse');
+
+        requestAnimationFrame(() => {
+            const laneDistance = Math.max(track.scrollWidth / 2, 240);
+            orbit.style.setProperty('--lane-distance', `${laneDistance}px`);
+        });
+    });
+}
+
+function resetMobileSkillTicker(orbits) {
+    orbits.forEach((orbit) => {
+        orbit.classList.remove('mobile-ticker');
+        orbit.style.removeProperty('--lane-speed');
+        orbit.style.removeProperty('--lane-direction');
+        orbit.style.removeProperty('--lane-distance');
+
+        const track = orbit.querySelector('.orbit-track');
+        if (track) {
+            track.querySelectorAll('[data-dup="true"]').forEach((dup) => dup.remove());
+            track.dataset.cloned = 'false';
+        }
     });
 }
 
@@ -1282,12 +1507,15 @@ document.addEventListener('DOMContentLoaded', () => {
     initAudioReactiveHero();
     initHeroPlayground();
     initNavigation();
+    initActiveNavState();
     initSmoothScroll();
     initMagneticButtons();
+    initSectionMoodSystem();
     initSpotlightHover();
     initBackToTop();
     initCaseStudyModal();
     createHeroParticles();
+    initProjectCardMotion();
 
     // Start preloader
     initPreloader();

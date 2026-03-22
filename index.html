@@ -12,19 +12,42 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/cert-lightbox.css">
     <link rel="stylesheet" href="css/mobile-perf.css">
+    <link rel="stylesheet" href="css/creative.css">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 
-<body>
+<body data-theme="atelier" data-section="hero">
+    <!-- Noise Layer for atmosphere -->
+    <div class="noise-layer" aria-hidden="true"></div>
+
+    <!-- Cursor Trail Container -->
+    <div class="cursor-trail-container" id="cursor-trail-container" aria-hidden="true"></div>
+
+    <!-- Signature Sigil -->
+    <div class="sigil" id="sigil" aria-label="Scroll to top">
+        <div class="sigil-ring"></div>
+        <div class="sigil-ring"></div>
+        <div class="sigil-core">NK</div>
+    </div>
+
+    <!-- Orbital Progress Indicator -->
+    <div class="progress-orbital" id="progress-orbital" aria-hidden="true">
+        <svg viewBox="0 0 60 60">
+            <circle class="progress-orbital-track" cx="30" cy="30" r="25"/>
+            <circle class="progress-orbital-fill" id="progress-fill" cx="30" cy="30" r="25"/>
+        </svg>
+        <div class="progress-orbital-dot" id="progress-dot"></div>
+    </div>
+
     <!-- Custom Cursor -->
     <div class="custom-cursor" id="cursor">
         <div class="cursor-dot"></div>
@@ -56,7 +79,7 @@
         </div>
         <div class="preloader-corners">
             <div class="corner-info top-left">
-                <span>Bhubaneswar, India</span>
+                <span>India</span>
                 <span>Portfolio 2026</span>
             </div>
             <div class="corner-info top-right">
@@ -78,6 +101,10 @@
             <div class="scroll-progress" id="scroll-progress"></div>
             <div class="nav-logo">
                 <a href="#hero" class="logo-text">NK<span class="accent">.</span></a>
+            </div>
+            <div class="nav-status" id="nav-status" aria-hidden="true">
+                <span class="status-dot"></span>
+                <span class="status-text">Creating from India</span>
             </div>
             <div class="nav-menu" id="nav-menu">
                 <a href="#about" class="nav-link">About</a>
@@ -108,12 +135,19 @@
         </div>
 
         <!-- Hero Section -->
-        <section class="hero" id="hero">
+        <section class="hero section-warp" id="hero">
             <div class="hero-bg">
                 <div class="hero-gradient"></div>
                 <div class="hero-grid"></div>
                 <div class="hero-particles" id="hero-particles"></div>
                 <canvas class="hero-audio" id="hero-audio"></canvas>
+            </div>
+
+            <!-- Portal Effect -->
+            <div class="hero-portal" id="hero-portal" aria-hidden="true">
+                <div class="portal-ring portal-ring-1"></div>
+                <div class="portal-ring portal-ring-2"></div>
+                <div class="portal-ring portal-ring-3"></div>
             </div>
 
             <div class="hero-content">
@@ -124,13 +158,13 @@
                             <span class="kicker-text">Developer • Creator • Entrepreneur</span>
                         </div>
 
-                        <h1 class="hero-title">
+                        <h1 class="hero-title" id="hero-title">
                             <div class="title-line">
-                                <span class="title-word">Hi, I'm</span>
+                                <span class="title-word" data-text="Hi, I'm">Hi, I'm</span>
                             </div>
                             <div class="title-line">
-                                <span class="title-word gradient-text animated-gradient-text">Nikhil</span>
-                                <span class="title-word outline">Kumar</span>
+                                <span class="title-word gradient-text animated-gradient-text" data-text="Nikhil">Nikhil</span>
+                                <span class="title-word outline" data-text="Kumar">Kumar</span>
                             </div>
                         </h1>
 
@@ -450,8 +484,8 @@
                     <!-- Project 1: ClearCheck -->
                     <article class="project-card featured no-overlay" data-project="clearcheck" data-case="clearcheck">
                         <div class="project-image clearcheck-preview">
-                            <img loading="lazy" src="assets/clearcheck1.webp" alt="ClearCheck team demo" class="clearcheck-base">
-                            <img loading="lazy" src="assets/clearcheck2.webp" alt="ClearCheck logo" class="clearcheck-hover">
+                            <img loading="lazy" src="assets/clearCheck1.webp" alt="ClearCheck team demo" class="clearcheck-base">
+                            <img loading="lazy" src="assets/clearCheck2.webp" alt="ClearCheck logo" class="clearcheck-hover">
                             <div class="project-overlay">
                                 <div class="overlay-content">
                                     <a class="view-project" href="https://abinya.vercel.app/project.html?id=16"
@@ -882,7 +916,7 @@
                                         <span class="in-progress">IN PROGRESS</span>
                                     </div>
                                     <span class="stop-detail">ITER, SOA University</span>
-                                    <span class="stop-location">Bhubaneswar</span>
+                                    <span class="stop-location">India</span>
                                 </div>
                             </div>
                         </div>
@@ -1233,7 +1267,7 @@
                                 </div>
                                 <div class="contact-card">
                                     <span class="card-label">Location</span>
-                                    <span class="card-value">Bhubaneswar, India</span>
+                                    <span class="card-value">India</span>
                                 </div>
                                 <div class="contact-card">
                                     <span class="card-label">Availability</span>
@@ -1314,7 +1348,7 @@
                             <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit"
                                 method="POST">
                                 <input type="hidden" name="access_key" value="c2478ed7-e523-4f77-b46f-9acbfe4e4705">
-                                <input type="hidden" name="subject" value="New Form Submisson on Nikhil's Portfolio">
+                                <input type="hidden" name="subject" value="New Form Submission on Nikhil's Portfolio">
                                 <input type="hidden" name="from_name" value="Portfolio Contact Form">
                                 <div class="form-group">
                                     <input type="text" id="name" name="name" placeholder=" " required>
@@ -1366,7 +1400,7 @@
                     </div>
                     <div class="footer-bottom">
                         <span class="footer-copyright">© 2026 Nikhil Kumar. Crafted with passion.</span>
-                        <span class="footer-location">Bhubaneswar, India</span>
+                        <span class="footer-location">India</span>
                     </div>
                 </div>
             </div>
@@ -1440,6 +1474,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/creative.js"></script>
 </body>
 
 </html>

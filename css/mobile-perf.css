@@ -43,10 +43,15 @@
     .hero-shell,
     .identity-card,
     .hero-audio-card,
-    .pillar-card,
-    .constellation-core {
+    .pillar-card {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
+    }
+
+    /* Light backdrop filter for constellation-core for better visual appeal */
+    .constellation-core {
+        backdrop-filter: blur(4px) !important;
+        -webkit-backdrop-filter: blur(4px) !important;
     }
 
     /* Disable custom cursor entirely on mobile */
