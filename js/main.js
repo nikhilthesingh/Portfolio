@@ -11,6 +11,27 @@ let lenis;
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+const perfProfile = {
+    isCoarsePointer: window.matchMedia('(hover: none) and (pointer: coarse)').matches,
+    isMobileViewport: window.matchMedia('(max-width: 768px)').matches,
+    isTabletOrBelow: window.matchMedia('(max-width: 1024px)').matches,
+    cpuCores: navigator.hardwareConcurrency || 4,
+    memoryGB: navigator.deviceMemory || 4
+};
+
+perfProfile.isLowEndDevice = perfProfile.cpuCores <= 4 || perfProfile.memoryGB <= 4;
+perfProfile.isConstrained = prefersReducedMotion ||
+    (perfProfile.isCoarsePointer && (perfProfile.isMobileViewport || perfProfile.isLowEndDevice));
+perfProfile.allowHeavyFx = !perfProfile.isConstrained;
+perfProfile.allowCanvasParticles = !perfProfile.isConstrained && !perfProfile.isMobileViewport;
+perfProfile.allowPointerFx = !perfProfile.isCoarsePointer && !perfProfile.isConstrained;
+
+window.__portfolioPerfProfile = perfProfile;
+
+ScrollTrigger.config({
+    ignoreMobileResize: true
+});
+
 function rafThrottle(callback) {
     let rafId = null;
     let lastValue;
@@ -369,11 +390,16 @@ function initPreloader() {
     const main = document.getElementById('main');
     const isMobile = window.innerWidth <= 768;
 
+    document.body.classList.add('intro-lock');
+
     const revealMain = () => {
         main.classList.add('visible');
         preloader.classList.add('hidden');
         if (window.lenis) window.lenis.start();
         initHeroAnimation();
+        setTimeout(() => {
+            document.body.classList.remove('intro-lock');
+        }, 450);
     };
 
     const tl = gsap.timeline({
@@ -415,7 +441,7 @@ function initPreloader() {
                 duration: 0.55,
                 ease: 'power3.inOut'
             }, '<')
-            .add(revealMain, '-=0.2');
+            .add(revealMain);
 
         return;
     }
@@ -472,7 +498,7 @@ function initPreloader() {
             ease: 'power4.inOut'
         }, '<')
         // Show main content
-        .add(revealMain, '-=0.5');
+        .add(revealMain);
 }
 
 /* ========================================
@@ -2055,8 +2081,10 @@ function initBackToTop() {
     const updateButton = rafThrottle((scrollY) => {
         if (scrollY > 600) {
             button.classList.add('visible');
+            document.body.classList.add('back-to-top-active');
         } else {
             button.classList.remove('visible');
+            document.body.classList.remove('back-to-top-active');
         }
     });
 
@@ -2298,19 +2326,32 @@ function initScrollProgress() {
     const progressBar = document.getElementById('scroll-progress');
     if (!progressBar) return;
 
-    let docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const getDocumentHeight = () => {
+        const body = document.body;
+        const html = document.documentElement;
+        const fullHeight = Math.max(
+            body ? body.scrollHeight : 0,
+            body ? body.offsetHeight : 0,
+            html.scrollHeight,
+            html.offsetHeight,
+            html.clientHeight
+        );
+        return Math.max(fullHeight - window.innerHeight, 1);
+    };
 
     const updateProgress = rafThrottle((scrollY) => {
-        const scrollPercent = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+        const docHeight = getDocumentHeight();
+        const scrollPercent = Math.min(Math.max((scrollY / docHeight) * 100, 0), 100);
         progressBar.style.width = scrollPercent + '%';
     });
 
     registerScrollHandler(updateProgress);
 
     window.addEventListener('resize', () => {
-        docHeight = document.documentElement.scrollHeight - window.innerHeight;
         updateProgress(window.scrollY);
     });
+
+    updateProgress(window.scrollY);
 }
 
 /* ========================================
@@ -2418,9 +2459,13 @@ function initParallaxEffects() {
 function initAllScrollEffects() {
     initScrollProgress();
     initSlidingText();
-    initSectionTransforms();
+    if (perfProfile.allowHeavyFx) {
+        initSectionTransforms();
+    }
     initBlurReveal();
-    initParallaxEffects();
+    if (perfProfile.allowHeavyFx) {
+        initParallaxEffects();
+    }
 }
 
 // Scroll effects are initialized once in the main DOMContentLoaded handler above
@@ -2448,11 +2493,22 @@ document.addEventListener('visibilitychange', () => {
 // Refresh ScrollTrigger on resize (debounced to avoid excessive recalc)
 let resizeTimer = null;
 let lastWidth = window.innerWidth;
+let lastHeight = window.innerHeight;
 
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
         const currentWidth = window.innerWidth;
+        const currentHeight = window.innerHeight;
+        const widthUnchanged = currentWidth === lastWidth;
+        const smallHeightShift = Math.abs(currentHeight - lastHeight) < 140;
+
+        // Ignore frequent mobile UI chrome height changes while scrolling.
+        if (perfProfile.isTabletOrBelow && widthUnchanged && smallHeightShift) {
+            lastHeight = currentHeight;
+            return;
+        }
+
         const crossedBreakpoint = (lastWidth > 768 && currentWidth <= 768) ||
                                    (lastWidth <= 768 && currentWidth > 768);
 
@@ -2464,6 +2520,7 @@ window.addEventListener('resize', () => {
         ScrollTrigger.refresh();
         initSkillConstellation();
         lastWidth = currentWidth;
+        lastHeight = currentHeight;
     }, 250);
 });
 
@@ -2707,6 +2764,8 @@ class ParticleSystem {
 }
 
 function initParticleSystems() {
+    if (!perfProfile.allowCanvasParticles) return;
+
     const heroParticles = document.getElementById('hero-particles');
     const beyondParticles = document.getElementById('beyond-particles');
 
@@ -2840,6 +2899,7 @@ function initSmoothReveal() {
    Dynamic Background Effect
    ======================================== */
 function initDynamicBackground() {
+    if (!perfProfile.allowPointerFx) return;
     if (window.matchMedia('(hover: none)').matches) return;
     const hero = document.querySelector('.hero');
     if (!hero) return;
@@ -2998,7 +3058,9 @@ function initModernEffects() {
     if (window.__portfolioModernEffectsInitialized) return;
     window.__portfolioModernEffectsInitialized = true;
 
-    init3DTilt();
+    if (perfProfile.allowPointerFx) {
+        init3DTilt();
+    }
     initParticleTrail();
     initParticleSystems();
     animateCounters();
@@ -3011,10 +3073,12 @@ function initModernEffects() {
     initImageDistortion();
 
     // Delayed effects
-    setTimeout(() => {
-        initTextScramble();
-        initTypewriterEffect();
-    }, 1000);
+    if (perfProfile.allowHeavyFx) {
+        setTimeout(() => {
+            initTextScramble();
+            initTypewriterEffect();
+        }, 1000);
+    }
 
 }
 

@@ -512,4 +512,28 @@
     .magnetic-btn::before {
         display: none;
     }
+
+    /* Defer off-screen section rendering to reduce scroll-time paint cost. */
+    .about,
+    .experience,
+    .skills,
+    .projects,
+    .trimatic,
+    .education-journey-section,
+    .achievements,
+    .beyond-logic,
+    .contact {
+        content-visibility: auto;
+        contain-intrinsic-size: 900px;
+    }
+
+    /* Isolate heavy composition areas to keep invalidation local. */
+    .projects-track-container,
+    .skills-constellation,
+    .trimatic-content,
+    .achievement-layout,
+    .beyond-content,
+    .contact-grid {
+        contain: layout paint style;
+    }
 }

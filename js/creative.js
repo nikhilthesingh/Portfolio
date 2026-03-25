@@ -3,11 +3,18 @@
    Enhanced animations & unique interactions
    ======================================== */
 
+const creativePerfProfile = window.__portfolioPerfProfile || {
+    isConstrained: false,
+    allowPointerFx: true,
+    allowHeavyFx: true
+};
+
 // ========================================
 // 1. CURSOR TRAIL EFFECT
 // Performance-optimized cursor wake
 // ========================================
 function initCursorTrail() {
+    if (creativePerfProfile.isConstrained) return;
     if (window.matchMedia('(hover: none) and (pointer: coarse)').matches || window.innerWidth < 1024) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
@@ -32,31 +39,44 @@ function initCursorTrail() {
         trailIndex = (trailIndex + 1) % poolSize;
 
         trail.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-        trail.classList.remove('active');
-
-        // Force reflow for animation restart
-        void trail.offsetWidth;
-        trail.classList.add('active');
+        if (trail._trailAnimation) {
+            trail._trailAnimation.cancel();
+        }
+        trail._trailAnimation = trail.animate([
+            { opacity: 0.8, transform: `translate3d(${x}px, ${y}px, 0) scale(1)` },
+            { opacity: 0, transform: `translate3d(${x}px, ${y}px, 0) scale(0.3)` }
+        ], {
+            duration: 500,
+            easing: 'ease-out',
+            fill: 'forwards'
+        });
     }
 
-    let throttleTimer = null;
-    document.addEventListener('mousemove', (e) => {
-        if (throttleTimer) return;
+    let pendingEvent = null;
+    let rafId = null;
 
-        const dx = e.clientX - lastX;
-        const dy = e.clientY - lastY;
+    const processMove = () => {
+        rafId = null;
+        if (!pendingEvent) return;
+
+        const { clientX, clientY } = pendingEvent;
+        const dx = clientX - lastX;
+        const dy = clientY - lastY;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         // Only spawn trail if moved enough distance
         if (distance > 30) {
-            lastX = e.clientX;
-            lastY = e.clientY;
-            spawnTrail(e.clientX, e.clientY);
+            lastX = clientX;
+            lastY = clientY;
+            spawnTrail(clientX, clientY);
         }
+    };
 
-        throttleTimer = setTimeout(() => {
-            throttleTimer = null;
-        }, 50);
+    document.addEventListener('mousemove', (e) => {
+        pendingEvent = e;
+        if (!rafId) {
+            rafId = requestAnimationFrame(processMove);
+        }
     }, { passive: true });
 }
 
@@ -129,8 +149,21 @@ function initOrbitalProgress() {
     gsap.set(orbital, { opacity: 0, scale: 0.8 });
 
     let orbitalVisible = false;
+    const getDocumentHeight = () => {
+        const body = document.body;
+        const html = document.documentElement;
+        const fullHeight = Math.max(
+            body ? body.scrollHeight : 0,
+            body ? body.offsetHeight : 0,
+            html.scrollHeight,
+            html.offsetHeight,
+            html.clientHeight
+        );
+        return Math.max(fullHeight - window.innerHeight, 1);
+    };
+
     const updateProgress = (scrollY) => {
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const docHeight = getDocumentHeight();
         const progress = docHeight > 0 ? Math.min(scrollY / docHeight, 1) : 0;
 
         // Update stroke
@@ -220,15 +253,42 @@ function initSectionAwareness() {
 // Mouse-following hover gradient
 // ========================================
 function initLiquidHover() {
+    if (!creativePerfProfile.allowPointerFx) return;
+    if (window.matchMedia('(hover: none)').matches) return;
+
     const elements = document.querySelectorAll('.liquid-hover, .project-card, .service-card, .about-card');
 
     elements.forEach(el => {
+        let rect = null;
+        let mouseX = 50;
+        let mouseY = 50;
+        let rafId = null;
+
+        const update = () => {
+            rafId = null;
+            el.style.setProperty('--x', `${mouseX}%`);
+            el.style.setProperty('--y', `${mouseY}%`);
+        };
+
+        el.addEventListener('mouseenter', () => {
+            rect = el.getBoundingClientRect();
+        });
+
         el.addEventListener('mousemove', (e) => {
-            const rect = el.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            el.style.setProperty('--x', x + '%');
-            el.style.setProperty('--y', y + '%');
+            if (!rect) rect = el.getBoundingClientRect();
+            mouseX = ((e.clientX - rect.left) / rect.width) * 100;
+            mouseY = ((e.clientY - rect.top) / rect.height) * 100;
+            if (!rafId) {
+                rafId = requestAnimationFrame(update);
+            }
+        }, { passive: true });
+
+        el.addEventListener('mouseleave', () => {
+            rect = null;
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
         });
     });
 }
@@ -429,6 +489,7 @@ function createFloatingParticles() {
 // Stronger 3D effect on cards
 // ========================================
 function initMagneticCards() {
+    if (!creativePerfProfile.allowPointerFx) return;
     const cards = document.querySelectorAll('.project-card, .service-card, .cert-card, .award-card');
     if (window.matchMedia('(hover: none)').matches) return;
 
@@ -552,11 +613,15 @@ function initCreativeEffects() {
     initSigil();
     initOrbitalProgress();
     initSectionAwareness();
-    initLiquidHover();
+    if (creativePerfProfile.allowPointerFx) {
+        initLiquidHover();
+        initMagneticCards();
+    }
     initRippleEffect();
-    initMagneticCards();
-    initDimensionalTransitions();
-    initScrollReveals();
+    if (creativePerfProfile.allowHeavyFx) {
+        initDimensionalTransitions();
+        initScrollReveals();
+    }
     initKonamiCode();
     initBreathingElements();
 

@@ -117,6 +117,15 @@ body::after {
     mix-blend-mode: screen;
 }
 
+body.intro-lock {
+    background: #080807 !important;
+}
+
+body.intro-lock::before,
+body.intro-lock::after {
+    opacity: 0 !important;
+}
+
 @media (max-width: 768px) {
     body::before,
     body::after {
