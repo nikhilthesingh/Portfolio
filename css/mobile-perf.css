@@ -84,4 +84,432 @@
     .card-spotlight::after {
         display: none;
     }
+
+    /* ========================================
+       CINEMATIC HERO MOBILE - VERTICAL INTRO
+       ======================================== */
+
+    /* Show vertical split intro on mobile */
+    .hero-split {
+        display: flex !important;
+        flex-direction: column !important;
+        position: absolute;
+        inset: 0;
+        z-index: 100;
+        pointer-events: none;
+    }
+
+    .split-panel {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: var(--color-bg);
+        border: none;
+        will-change: transform;
+    }
+
+    .split-left {
+        border-bottom: 1px solid rgba(255, 107, 0, 0.2);
+    }
+
+    .split-right {
+        border-top: 1px solid rgba(255, 107, 0, 0.2);
+    }
+
+    .split-content {
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .split-number {
+        font-size: 2.5rem;
+        opacity: 0.15;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .split-label {
+        font-size: 1.5rem;
+        letter-spacing: 0.15em;
+    }
+
+    .split-sub {
+        font-size: 0.75rem;
+        opacity: 0.5;
+        margin-top: 0.25rem;
+    }
+
+    /* Simplify depth layers */
+    .hero-depth-layer {
+        display: none;
+    }
+
+    /* Hero emergence styling for mobile */
+    .hero-cinematic .hero-emergence {
+        padding: 2rem 1rem;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 10;
+        min-height: 40vh;
+    }
+
+    /* Keep letter states controlled by cinematic timeline */
+
+    /* Giant name on mobile */
+    .hero-name-giant {
+        font-size: clamp(3rem, 16vw, 5rem) !important;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        gap: 0.02em;
+        line-height: 1;
+    }
+
+    .name-letter {
+        display: inline-block;
+    }
+
+    .hero-surname {
+        font-size: clamp(1.2rem, 6vw, 2rem) !important;
+        margin-top: 0.75rem;
+        display: flex;
+        justify-content: center;
+        gap: 0.3em;
+        letter-spacing: 0.4em;
+    }
+
+    /* Hero descriptor on mobile */
+    .hero-descriptor {
+        margin-top: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .descriptor-line {
+        width: 30px;
+        height: 1px;
+        background: var(--color-accent);
+    }
+
+    .descriptor-text {
+        color: var(--color-text-muted);
+    }
+
+    .descriptor-cursor {
+        color: var(--color-accent);
+        animation: cursorBlink 1s step-end infinite;
+    }
+
+    @keyframes cursorBlink {
+        50% { opacity: 0; }
+    }
+
+    /* Keep revealed content hidden until cinematic transition finishes */
+    .hero-cinematic .hero-revealed-content {
+        opacity: 0;
+        pointer-events: none;
+        padding: 0 1rem;
+    }
+
+    .hero-cinematic.content-revealed .hero-revealed-content {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Hero layout on mobile */
+    .hero-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .hero-left {
+        text-align: center;
+    }
+
+    .hero-right {
+        order: -1;
+        justify-items: center;
+        align-content: center;
+        gap: 0.75rem;
+    }
+
+    .hero-kicker {
+        justify-content: center;
+    }
+
+    .kicker-line {
+        display: none;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+    }
+
+    .hero-actions .cta-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Show compact playground on mobile above hero text */
+    .hero-right .hero-playground {
+        display: grid;
+        width: min(260px, 72vw);
+        opacity: 1;
+        transform: none;
+        margin: 0 auto;
+    }
+
+    .hero-right .playground-orb {
+        width: 92px;
+        height: 92px;
+        font-size: 1.9rem;
+    }
+
+    .hero-right .play-item {
+        padding: 0.45rem 0.72rem;
+        font-size: 0.56rem;
+        letter-spacing: 0.08em;
+    }
+
+    /* Audio toggle mobile */
+    .audio-toggle {
+        display: none;
+    }
+
+    /* Scroll cue mobile */
+    .hero-scroll {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* ========================================
+       ABOUT SECTION MOBILE
+       ======================================== */
+
+    .about-headline .headline-word {
+        font-size: clamp(1.25rem, 6vw, 2rem);
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Hide section transitions on mobile */
+    .section-transition {
+        display: none;
+    }
+
+    /* ========================================
+       SKILLS SECTION - PROFESSIONAL MOBILE
+       ======================================== */
+
+    /* Skills section layout */
+    .skills {
+        padding: 3rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Skills constellation - complete mobile redesign */
+    .skills-constellation {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+        padding: 0 1rem;
+        position: relative;
+    }
+
+    /* Remove decorative ::before */
+    .skills-constellation::before {
+        display: none;
+    }
+
+    /* Core card - professional styling */
+    .constellation-core {
+        width: 100%;
+        max-width: 400px;
+        padding: 1.5rem;
+        text-align: center;
+        background: linear-gradient(
+            145deg,
+            rgba(255, 107, 0, 0.08) 0%,
+            rgba(15, 15, 15, 0.98) 100%
+        ) !important;
+        border: 1px solid rgba(255, 107, 0, 0.2) !important;
+        border-radius: 16px;
+        box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.4),
+            0 0 0 1px rgba(255, 255, 255, 0.03) inset !important;
+        margin-bottom: 0.5rem;
+    }
+
+    .core-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        color: var(--color-accent);
+        text-transform: uppercase;
+    }
+
+    .core-title {
+        font-size: 1.4rem;
+        margin: 0.5rem 0;
+        background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .core-desc {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: var(--color-text-muted);
+    }
+
+    /* Orbit containers - Animated ticker lanes for Mobile */
+    .orbit {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        padding: 0.5rem 0;
+    }
+
+    /* Edge fades for mobile ticker */
+    .orbit::before,
+    .orbit::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 40px;
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    .orbit::before {
+        left: 0;
+        background: linear-gradient(90deg, var(--color-bg-dark), transparent);
+    }
+
+    .orbit::after {
+        right: 0;
+        background: linear-gradient(-90deg, var(--color-bg-dark), transparent);
+    }
+
+    /* Orbit track - Animated horizontal scroll */
+    .orbit.mobile-ticker .orbit-track {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 1rem;
+        width: max-content;
+        animation: tickerScroll var(--lane-speed, 20s) linear infinite;
+        animation-direction: var(--lane-direction, normal);
+    }
+
+    @keyframes tickerScroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-1 * var(--lane-distance, 50%)));
+        }
+    }
+
+    /* Color accent per orbit */
+    .orbit-1 {
+        border-color: rgba(255, 107, 0, 0.15);
+    }
+
+    .orbit-2 {
+        border-color: rgba(125, 255, 179, 0.12);
+    }
+
+    .orbit-3 {
+        border-color: rgba(200, 164, 21, 0.12);
+    }
+
+    /* Orbit tags - modern glass pill style */
+    .orbit-tag {
+        flex: 0 0 auto;
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        white-space: nowrap;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 12px;
+        color: var(--color-text);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+    }
+
+    /* Accent colors on tags */
+    .orbit-1 .orbit-tag {
+        border-color: rgba(255, 107, 0, 0.2) !important;
+    }
+
+    .orbit-2 .orbit-tag {
+        border-color: rgba(125, 255, 179, 0.15) !important;
+    }
+
+    .orbit-3 .orbit-tag {
+        border-color: rgba(200, 164, 21, 0.15) !important;
+    }
+
+    /* Active touch state */
+    .orbit-tag:active {
+        background: rgba(255, 255, 255, 0.12) !important;
+    }
+
+    /* Hide skills legend on mobile for cleaner look */
+    .skills-legend {
+        display: none;
+    }
+
+    /* ========================================
+       GENERAL PERFORMANCE MOBILE
+       ======================================== */
+
+    /* Reduce animation complexity */
+    .scroll-reveal,
+    .stagger-reveal > * {
+        transition-duration: 0.4s !important;
+    }
+
+    /* Disable parallax effects */
+    .parallax-layer {
+        transform: none !important;
+    }
+
+    /* Simpler hover states */
+    .project-slide:hover,
+    .slide-btn:hover {
+        transform: none;
+    }
+
+    /* Reduce magnetic button effects */
+    .magnetic-btn {
+        transform: none !important;
+    }
+
+    .magnetic-btn::before {
+        display: none;
+    }
 }

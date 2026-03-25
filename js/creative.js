@@ -18,7 +18,6 @@ function initCursorTrail() {
     const poolSize = 20;
     let trailIndex = 0;
     let lastX = 0, lastY = 0;
-    let trailActive = false;
 
     // Pre-create trail elements for performance
     for (let i = 0; i < poolSize; i++) {
@@ -32,8 +31,7 @@ function initCursorTrail() {
         const trail = trailPool[trailIndex];
         trailIndex = (trailIndex + 1) % poolSize;
 
-        trail.style.left = x + 'px';
-        trail.style.top = y + 'px';
+        trail.style.transform = `translate3d(${x}px, ${y}px, 0)`;
         trail.classList.remove('active');
 
         // Force reflow for animation restart
@@ -60,72 +58,6 @@ function initCursorTrail() {
             throttleTimer = null;
         }, 50);
     }, { passive: true });
-}
-
-// ========================================
-// 2. HERO PORTAL ARRIVAL EFFECT
-// Dramatic entrance animation
-// ========================================
-function initHeroPortalEffect() {
-    const portal = document.getElementById('hero-portal');
-    const heroTitle = document.getElementById('hero-title');
-    if (!portal || !heroTitle) return;
-
-    const rings = portal.querySelectorAll('.portal-ring');
-
-    // Setup initial state
-    gsap.set(rings, {
-        scale: 0,
-        opacity: 0,
-        rotation: -180
-    });
-
-    // Create the portal opening animation
-    const portalTimeline = gsap.timeline({
-        delay: 0.5, // Start after preloader begins to fade
-    });
-
-    // Rings expand outward with rotation
-    portalTimeline
-        .to(rings[0], {
-            scale: 1,
-            opacity: 1,
-            rotation: 0,
-            duration: 0.8,
-            ease: 'power2.out'
-        })
-        .to(rings[1], {
-            scale: 1,
-            opacity: 0.7,
-            rotation: 360,
-            duration: 1,
-            ease: 'power2.out'
-        }, '-=0.5')
-        .to(rings[2], {
-            scale: 1,
-            opacity: 0.4,
-            rotation: -180,
-            duration: 1.2,
-            ease: 'power2.out'
-        }, '-=0.7')
-        // Fade out portal after hero content appears
-        .to(rings, {
-            scale: 2,
-            opacity: 0,
-            duration: 1.5,
-            ease: 'power2.in',
-            stagger: 0.1
-        }, '+=0.5');
-
-    // Add glitch effect to title on hover
-    if (heroTitle) {
-        heroTitle.addEventListener('mouseenter', () => {
-            heroTitle.classList.add('glitch-active');
-            setTimeout(() => {
-                heroTitle.classList.remove('glitch-active');
-            }, 800);
-        });
-    }
 }
 
 // ========================================
@@ -184,7 +116,12 @@ function initOrbitalProgress() {
     const orbital = document.getElementById('progress-orbital');
     if (!fill || !dot || !orbital) return;
 
-    const circumference = 2 * Math.PI * 25; // radius = 25
+    const radius = 25;
+    const centerX = 30;
+    const centerY = 30;
+    const dotSize = 7; // dot width/height
+    const circumference = 2 * Math.PI * radius;
+
     fill.style.strokeDasharray = circumference;
     fill.style.strokeDashoffset = circumference;
 
@@ -194,21 +131,17 @@ function initOrbitalProgress() {
     let orbitalVisible = false;
     const updateProgress = (scrollY) => {
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = docHeight > 0 ? scrollY / docHeight : 0;
+        const progress = docHeight > 0 ? Math.min(scrollY / docHeight, 1) : 0;
 
         // Update stroke
         const offset = circumference - (progress * circumference);
         fill.style.strokeDashoffset = offset;
 
-        // Update dot position (rotate around circle)
-        const angle = progress * 360 - 90; // Start from top
-        const radius = 25;
-        const centerX = 30;
-        const centerY = 30;
-        const x = centerX + radius * Math.cos(angle * Math.PI / 180);
-        const y = centerY + radius * Math.sin(angle * Math.PI / 180);
-        dot.style.left = x + 'px';
-        dot.style.top = y + 'px';
+        // Update dot position (rotate around circle, starting from top)
+        const angle = (progress * 360 - 90) * (Math.PI / 180);
+        const x = centerX + radius * Math.cos(angle) - (dotSize / 2);
+        const y = centerY + radius * Math.sin(angle) - (dotSize / 2);
+        dot.style.transform = `translate3d(${x}px, ${y}px, 0)`;
 
         // Show/hide orbital
         const shouldShow = scrollY > 200;
@@ -558,9 +491,13 @@ class TextScrambler {
 }
 
 function initTextScramble() {
-    const elements = document.querySelectorAll('.section-title, .project-title');
+    // Only target simple text elements, not titles with nested giant typography
+    const elements = document.querySelectorAll('.project-title, .slide-title');
 
     elements.forEach(el => {
+        // Skip elements with complex child elements that would break layout
+        if (el.querySelector('span, div')) return;
+
         const scrambler = new TextScrambler(el);
 
         el.addEventListener('mouseenter', () => scrambler.scramble());
@@ -599,6 +536,9 @@ function initSectionSnapping() {
 // INITIALIZE ALL CREATIVE EFFECTS
 // ========================================
 function initCreativeEffects() {
+    if (window.__portfolioCreativeEffectsInitialized) return;
+    window.__portfolioCreativeEffectsInitialized = true;
+
     // Check for reduced motion preference
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         initSigil(); // Keep basic functionality
@@ -609,17 +549,15 @@ function initCreativeEffects() {
 
     // Initialize all effects
     initCursorTrail();
-    initHeroPortalEffect();
     initSigil();
     initOrbitalProgress();
     initSectionAwareness();
     initLiquidHover();
     initRippleEffect();
+    initMagneticCards();
     initDimensionalTransitions();
     initScrollReveals();
     initKonamiCode();
-    createFloatingParticles();
-    initMagneticCards();
     initBreathingElements();
 
     // Text scramble can be performance intensive

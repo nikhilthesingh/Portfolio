@@ -135,7 +135,15 @@
         </div>
 
         <!-- Hero Section -->
-        <section class="hero section-warp" id="hero">
+        <section class="hero hero-cinematic section-warp" id="hero">
+            <!-- Depth layers for parallax -->
+            <div class="hero-dimension" aria-hidden="true">
+                <div class="hero-depth-layer depth-1"></div>
+                <div class="hero-depth-layer depth-2"></div>
+                <div class="hero-depth-layer depth-3"></div>
+            </div>
+
+            <!-- Original background elements -->
             <div class="hero-bg">
                 <div class="hero-gradient"></div>
                 <div class="hero-grid"></div>
@@ -143,80 +151,110 @@
                 <canvas class="hero-audio" id="hero-audio"></canvas>
             </div>
 
-            <!-- Portal Effect -->
-            <div class="hero-portal" id="hero-portal" aria-hidden="true">
-                <div class="portal-ring portal-ring-1"></div>
-                <div class="portal-ring portal-ring-2"></div>
-                <div class="portal-ring portal-ring-3"></div>
-            </div>
-
-            <div class="hero-content">
-                <div class="hero-layout">
-                    <div class="hero-left">
-                        <div class="hero-kicker">
-                            <span class="kicker-line"></span>
-                            <span class="kicker-text">Developer • Creator • Entrepreneur</span>
-                        </div>
-
-                        <h1 class="hero-title" id="hero-title">
-                            <div class="title-line">
-                                <span class="title-word" data-text="Hi, I'm">Hi, I'm</span>
-                            </div>
-                            <div class="title-line">
-                                <span class="title-word gradient-text animated-gradient-text" data-text="Nikhil">Nikhil</span>
-                                <span class="title-word outline" data-text="Kumar">Kumar</span>
-                            </div>
-                        </h1>
-
-                        <p class="hero-description">
-                            Computer Science student & creative entrepreneur. Building AI-powered solutions by day,
-                            crafting visual stories by night. From hackathon stages to client deliveries—I bridge code
-                            and creativity.
-                        </p>
-
-                        <div class="hero-actions">
-                            <a href="#projects" class="cta-button primary liquid-button bounce-hover">
-                                <span class="cta-bg"></span>
-                                <span class="cta-text">View My Work</span>
-                                <span class="cta-arrow">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path d="M7 7h10v10M7 17L17 7" />
-                                    </svg>
-                                </span>
-                            </a>
-                            <a href="#trimatic" class="cta-button secondary liquid-button bounce-hover">
-                                <span class="cta-text">Explore Tri Matic</span>
-                            </a>
-                        </div>
-
+            <!-- Split panels that slide away -->
+            <div class="hero-split" aria-hidden="true">
+                <div class="split-panel split-left">
+                    <div class="split-content">
+                        <span class="split-number">01</span>
+                        <span class="split-label">Developer</span>
+                        <span class="split-sub">Code & Logic</span>
                     </div>
-
-                    <div class="hero-right">
-                        <div class="hero-playground" aria-hidden="true">
-                            <div class="playground-ring"></div>
-                            <div class="playground-ring ring-2"></div>
-                            <div class="playground-orb">NK</div>
-                            <div class="play-item" data-depth="1.2">3 Projects</div>
-                            <div class="play-item" data-depth="0.8">8.7K Subs</div>
-                            <div class="play-item" data-depth="1.1">3M Views</div>
-                            <div class="play-item" data-depth="0.9">Top 10 HackNation</div>
-                            <div class="play-item" data-depth="1">AI/ML Builder</div>
-                            <div class="play-item" data-depth="0.7">Tri Matic Lead</div>
-                        </div>
-
-                        <button class="audio-toggle audio-pill" id="audio-toggle" type="button" aria-pressed="false">
-                            <span class="audio-icon"></span>
-                            <span class="audio-text">Visualizer Off</span>
-                        </button>
+                </div>
+                <div class="split-panel split-right">
+                    <div class="split-content">
+                        <span class="split-number">02</span>
+                        <span class="split-label">Creator</span>
+                        <span class="split-sub">Vision & Art</span>
                     </div>
                 </div>
             </div>
 
+            <!-- Giant name emergence -->
+            <div class="hero-emergence">
+                <h1 class="hero-name-giant" aria-label="Nikhil Kumar">
+                    <span class="name-letter" data-letter="N">N</span>
+                    <span class="name-letter" data-letter="I">I</span>
+                    <span class="name-letter" data-letter="K">K</span>
+                    <span class="name-letter" data-letter="H">H</span>
+                    <span class="name-letter" data-letter="I">I</span>
+                    <span class="name-letter" data-letter="L">L</span>
+                </h1>
+                <div class="hero-surname">
+                    <span class="surname-letter">K</span>
+                    <span class="surname-letter">U</span>
+                    <span class="surname-letter">M</span>
+                    <span class="surname-letter">A</span>
+                    <span class="surname-letter">R</span>
+                </div>
+                <div class="hero-descriptor">
+                    <span class="descriptor-line"></span>
+                    <span class="descriptor-text"></span>
+                    <span class="descriptor-cursor">|</span>
+                </div>
+            </div>
+
+            <!-- Revealed content (appears after split) -->
+            <div class="hero-revealed-content">
+                <div class="hero-content">
+                    <div class="hero-layout">
+                        <div class="hero-left">
+                            <div class="hero-kicker">
+                                <span class="kicker-line"></span>
+                                <span class="kicker-text">Developer • Creator • Entrepreneur</span>
+                            </div>
+
+                            <p class="hero-description">
+                                Computer Science student & creative entrepreneur. Building AI-powered solutions by day,
+                                crafting visual stories by night. From hackathon stages to client deliveries—I bridge code
+                                and creativity.
+                            </p>
+
+                            <div class="hero-actions">
+                                <a href="#projects" class="cta-button primary liquid-button bounce-hover magnetic-btn">
+                                    <span class="cta-bg"></span>
+                                    <span class="cta-text">View My Work</span>
+                                    <span class="cta-arrow">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2">
+                                            <path d="M7 7h10v10M7 17L17 7" />
+                                        </svg>
+                                    </span>
+                                </a>
+                                <a href="#trimatic" class="cta-button secondary liquid-button bounce-hover magnetic-btn">
+                                    <span class="cta-text">Explore Tri Matic</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="hero-right">
+                            <div class="hero-playground" aria-hidden="true">
+                                <div class="playground-ring"></div>
+                                <div class="playground-ring ring-2"></div>
+                                <div class="playground-orb">NK</div>
+                                <div class="play-item" data-depth="1.2">3 Projects</div>
+                                <div class="play-item" data-depth="0.8">8.7K Subs</div>
+                                <div class="play-item" data-depth="1.1">3M Views</div>
+                                <div class="play-item" data-depth="0.9">Top 10 HackNation</div>
+                                <div class="play-item" data-depth="1">AI/ML Builder</div>
+                                <div class="play-item" data-depth="0.7">Tri Matic Lead</div>
+                            </div>
+
+                            <button class="audio-toggle audio-pill" id="audio-toggle" type="button" aria-pressed="false">
+                                <span class="audio-icon"></span>
+                                <span class="audio-text">Visualizer Off</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll cue -->
             <div class="hero-scroll">
                 <div class="scroll-indicator">
-                    <span class="scroll-text">Scroll</span>
-                    <div class="scroll-line"></div>
+                    <div class="scroll-mouse">
+                        <div class="scroll-wheel"></div>
+                    </div>
+                    <span class="scroll-text">Scroll to explore</span>
                 </div>
             </div>
 
@@ -275,11 +313,19 @@
         </section>
 
         <!-- About Section -->
-        <section class="about" id="about">
+        <section class="about about-enhanced" id="about">
+            <!-- Giant background text -->
+            <div class="section-bg-text" aria-hidden="true">ABOUT</div>
+
             <div class="container">
                 <div class="about-header">
                     <span class="section-number">01</span>
                     <span class="section-label">Who I Am</span>
+                    <h2 class="about-headline">
+                        <span class="headline-word">Developer.</span>
+                        <span class="headline-word">Creator.</span>
+                        <span class="headline-word accent">Dreamer.</span>
+                    </h2>
                 </div>
 
                 <div class="about-content">
@@ -320,6 +366,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Section transition line -->
+            <div class="section-transition">
+                <div class="transition-line"></div>
             </div>
         </section>
 
@@ -471,275 +522,194 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section class="projects" id="projects">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-number">04</span>
-                    <span class="section-label">Featured Work</span>
-                    <h2 class="section-title">Projects<br><span class="outline">& Builds</span></h2>
+        <!-- Projects Section - Horizontal Gallery -->
+        <section class="projects projects-horizontal" id="projects">
+            <div class="projects-bg-text" aria-hidden="true">WORK</div>
+
+            <div class="projects-intro">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-number">04</span>
+                        <span class="section-label">Featured Work</span>
+                        <h2 class="section-title projects-title">
+                            <span class="title-giant">PROJECTS</span>
+                        </h2>
+                    </div>
+                    <p class="projects-tagline">
+                        <span class="tagline-icon">→</span>
+                        Scroll to explore selected builds
+                    </p>
                 </div>
+            </div>
 
-                <div class="projects-grid">
-                    <!-- Project 1: ClearCheck -->
-                    <article class="project-card featured no-overlay" data-project="clearcheck" data-case="clearcheck">
-                        <div class="project-image clearcheck-preview">
-                            <img loading="lazy" src="assets/clearCheck1.webp" alt="ClearCheck team demo" class="clearcheck-base">
-                            <img loading="lazy" src="assets/clearCheck2.webp" alt="ClearCheck logo" class="clearcheck-hover">
-                            <div class="project-overlay">
-                                <div class="overlay-content">
-                                    <a class="view-project" href="https://abinya.vercel.app/project.html?id=16"
-                                        target="_blank" rel="noopener">View Project</a>
-                                    <button class="case-btn" type="button" data-case-open>Case Study</button>
+            <div class="projects-track-container">
+                <div class="projects-track">
+                    <article class="project-slide" data-project="clearcheck" data-case="clearcheck">
+                        <div class="slide-number" aria-hidden="true">01</div>
+                        <div class="slide-content">
+                            <div class="slide-image">
+                                <img loading="lazy" src="assets/clearCheck1.webp" alt="ClearCheck AI Proctoring System">
+                                <div class="slide-image-overlay"></div>
+                            </div>
+                            <div class="slide-info">
+                                <div class="slide-body">
+                                    <div class="slide-meta">
+                                        <span class="slide-category">AI/ML • Computer Vision</span>
+                                        <span class="slide-badge">Team Lead</span>
+                                    </div>
+                                    <h3 class="slide-title">ClearCheck</h3>
+                                    <p class="slide-subtitle">AI Proctoring Suite</p>
+                                    <p class="slide-desc">Advanced AI-powered online exam proctoring with device detection and multi-face recognition.</p>
+                                    <div class="slide-kpis">
+                                        <div class="kpi">
+                                            <span class="kpi-value">92%</span>
+                                            <span class="kpi-label">Accuracy</span>
+                                        </div>
+                                        <div class="kpi">
+                                            <span class="kpi-value">Top 10</span>
+                                            <span class="kpi-label">HackNation</span>
+                                        </div>
+                                    </div>
+                                    <div class="slide-tech">
+                                        <span>Python</span>
+                                        <span>ML</span>
+                                        <span>OpenCV</span>
+                                    </div>
+                                </div>
+                                <div class="slide-actions">
+                                    <a href="https://abinya.vercel.app/project.html?id=16" target="_blank" rel="noopener" class="slide-btn primary magnetic-btn">
+                                        <span>View Project</span>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M7 7h10v10M7 17L17 7" />
+                                        </svg>
+                                    </a>
+                                    <button class="slide-btn case-btn-link" type="button" data-case-open>Case Study</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="project-info">
-                            <div class="project-meta">
-                                <span class="project-category">AI/ML • Computer Vision</span>
-                                <span class="project-badge">Team Lead</span>
+                        <div class="slide-achievement">Top 10 at HackNation • SOA PROXIMA 2025</div>
+                    </article>
+
+                    <article class="project-slide" data-project="dejaview" data-case="dejaview">
+                        <div class="slide-number" aria-hidden="true">02</div>
+                        <div class="slide-content">
+                            <div class="slide-image">
+                                <img loading="lazy" src="assets/DejaView.webp" alt="DejaView Photo Location">
+                                <div class="slide-image-overlay"></div>
                             </div>
-                            <div class="project-head">
-                                <h3 class="project-title">ClearCheck</h3>
-                                <span class="project-status">AI Proctoring Suite</span>
-                            </div>
-                            <p class="project-desc">Advanced AI-powered online exam proctoring with device detection and
-                                multi-face recognition</p>
-                            <div class="project-kpis">
-                                <div class="kpi">
-                                    <span class="kpi-value">92%</span>
-                                    <span class="kpi-label">Accuracy</span>
+                            <div class="slide-info">
+                                <div class="slide-body">
+                                    <div class="slide-meta">
+                                        <span class="slide-category">Full Stack • Java</span>
+                                        <span class="slide-badge live">Live Demo</span>
+                                    </div>
+                                    <h3 class="slide-title">DejaView</h3>
+                                    <p class="slide-subtitle">Location Visualizer</p>
+                                    <p class="slide-desc">Photo location visualizer with GPS extraction, interactive maps, and 360 degree Street View.</p>
+                                    <div class="slide-kpis">
+                                        <div class="kpi">
+                                            <span class="kpi-value">360</span>
+                                            <span class="kpi-label">Street View</span>
+                                        </div>
+                                        <div class="kpi">
+                                            <span class="kpi-value">Live</span>
+                                            <span class="kpi-label">Demo</span>
+                                        </div>
+                                    </div>
+                                    <div class="slide-tech">
+                                        <span>Java</span>
+                                        <span>Servlets</span>
+                                        <span>Google Maps</span>
+                                    </div>
                                 </div>
-                                <div class="kpi">
-                                    <span class="kpi-value">Top 10</span>
-                                    <span class="kpi-label">HackNation</span>
+                                <div class="slide-actions">
+                                    <a href="https://dejaview-qhig.onrender.com/" target="_blank" rel="noopener" class="slide-btn primary magnetic-btn">
+                                        <span>Live Demo</span>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                            <polyline points="15 3 21 3 21 9" />
+                                            <line x1="10" y1="14" x2="21" y2="3" />
+                                        </svg>
+                                    </a>
+                                    <a href="https://github.com/nikhilthesingh/DejaView" target="_blank" rel="noopener" class="slide-btn secondary">GitHub</a>
+                                    <button class="slide-btn case-btn-link" type="button" data-case-open>Case Study</button>
                                 </div>
-                                <div class="kpi">
-                                    <span class="kpi-value">4</span>
-                                    <span class="kpi-label">Team size</span>
-                                </div>
-                            </div>
-                            <div class="project-tech">
-                                <span>Python</span>
-                                <span>ML</span>
-                                <span>OpenCV</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://abinya.vercel.app/project.html?id=16" target="_blank" rel="noopener"
-                                    class="project-link button-style primary">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                        <polyline points="15 3 21 3 21 9" />
-                                        <line x1="10" y1="14" x2="21" y2="3" />
-                                    </svg>
-                                    <span>View Project</span>
-                                </a>
-                                <button class="case-btn button-style" type="button" data-case-open>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-                                    </svg>
-                                    <span>Case Study</span>
-                                </button>
-                            </div>
-                            <div class="project-achievements">
-                                <span class="achievement">🏆 Top 10 at HackNation</span>
-                                <span class="achievement">🎯 SOA PROXIMA 2025</span>
-                            </div>
-                            <div class="project-actions">
-                                <a href="https://abinya.vercel.app/project.html?id=16" target="_blank" rel="noopener"
-                                    class="project-link primary" data-magnetic>
-                                    <span>Learn More</span>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path d="M7 7h10v10M7 17L17 7" />
-                                    </svg>
-                                </a>
-                                <button class="case-btn ghost" type="button" data-case-open>Open Case</button>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Project 2: DejaView -->
-                    <article class="project-card" data-project="dejaview" data-case="dejaview">
-                        <div class="project-image">
-                            <img loading="lazy" src="assets/DejaView.webp" alt="DejaView Photo Location">
-                            <div class="project-overlay">
-                                <div class="overlay-content">
-                                    <a class="view-project" href="https://dejaview-qhig.onrender.com/" target="_blank"
-                                        rel="noopener">View Project</a>
-                                    <button class="case-btn" type="button" data-case-open>Case Study</button>
+                    <article class="project-slide" data-project="appup" data-case="appup">
+                        <div class="slide-number" aria-hidden="true">03</div>
+                        <div class="slide-content">
+                            <div class="slide-image">
+                                <img loading="lazy" src="assets/AppUP.webp" alt="AppUP Windows Updater">
+                                <div class="slide-image-overlay"></div>
+                            </div>
+                            <div class="slide-info">
+                                <div class="slide-body">
+                                    <div class="slide-meta">
+                                        <span class="slide-category">CLI Tool • Python</span>
+                                    </div>
+                                    <h3 class="slide-title">AppUP</h3>
+                                    <p class="slide-subtitle">Windows Updater</p>
+                                    <p class="slide-desc">Retro matrix-style CLI utility for updating Windows apps installed outside Microsoft Store.</p>
+                                    <div class="slide-kpis">
+                                        <div class="kpi">
+                                            <span class="kpi-value">1500+</span>
+                                            <span class="kpi-label">Apps</span>
+                                        </div>
+                                        <div class="kpi">
+                                            <span class="kpi-value">70%</span>
+                                            <span class="kpi-label">Less effort</span>
+                                        </div>
+                                    </div>
+                                    <div class="slide-tech">
+                                        <span>Python</span>
+                                        <span>Rich</span>
+                                        <span>PyInstaller</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <div class="project-meta">
-                                <span class="project-category">Full Stack • Java</span>
-                                <span class="project-badge live">Live Demo</span>
-                            </div>
-                            <div class="project-head">
-                                <h3 class="project-title">DejaView</h3>
-                                <span class="project-status">Location Visualizer</span>
-                            </div>
-                            <p class="project-desc">Photo location visualizer with GPS extraction, interactive maps and
-                                360° Street View</p>
-                            <div class="project-kpis">
-                                <div class="kpi">
-                                    <span class="kpi-value">360°</span>
-                                    <span class="kpi-label">Street View</span>
+                                <div class="slide-actions">
+                                    <a href="https://raw.githubusercontent.com/nikhilthesingh/AppUP/main/AppUP.exe" target="_blank" rel="noopener" class="slide-btn primary magnetic-btn">
+                                        <span>Download</span>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                            <polyline points="7 10 12 15 17 10" />
+                                            <line x1="12" y1="15" x2="12" y2="3" />
+                                        </svg>
+                                    </a>
+                                    <a href="https://github.com/nikhilthesingh/AppUP" target="_blank" rel="noopener" class="slide-btn secondary">GitHub</a>
+                                    <button class="slide-btn case-btn-link" type="button" data-case-open>Case Study</button>
                                 </div>
-                                <div class="kpi">
-                                    <span class="kpi-value">Zero</span>
-                                    <span class="kpi-label">Image storage</span>
-                                </div>
-                                <div class="kpi">
-                                    <span class="kpi-value">Live</span>
-                                    <span class="kpi-label">Public demo</span>
-                                </div>
-                            </div>
-                            <div class="project-tech">
-                                <span>Java</span>
-                                <span>Servlets</span>
-                                <span>Google Maps API</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/nikhilthesingh/DejaView" target="_blank" rel="noopener"
-                                    class="project-link button-style">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                                    </svg>
-                                    <span>GitHub</span>
-                                </a>
-                                <a href="https://dejaview-qhig.onrender.com/" target="_blank" rel="noopener"
-                                    class="project-link button-style primary">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                        <polyline points="15 3 21 3 21 9" />
-                                        <line x1="10" y1="14" x2="21" y2="3" />
-                                    </svg>
-                                    <span>Live Demo</span>
-                                </a>
-                                <button type="button" data-case-open class="project-link button-style video-preview">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <polygon points="5 3 19 12 5 21 5 3" />
-                                    </svg>
-                                    <span>Video Demo</span>
-                                </button>
-                            </div>
-                            <div class="project-actions">
-                                <a href="https://github.com/nikhilthesingh/DejaView" target="_blank" rel="noopener"
-                                    class="project-link" data-magnetic>
-                                    <span>GitHub</span>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                                    </svg>
-                                </a>
-                                <a href="https://dejaview-qhig.onrender.com/" target="_blank" rel="noopener"
-                                    class="project-link primary" data-magnetic>
-                                    <span>Live Demo</span>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                        <polyline points="15 3 21 3 21 9" />
-                                        <line x1="10" y1="14" x2="21" y2="3" />
-                                    </svg>
-                                </a>
-                                <button class="case-btn ghost" type="button" data-case-open>Open Case</button>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Project 3: AppUP -->
-                    <article class="project-card" data-project="appup" data-case="appup">
-                        <div class="project-image">
-                            <img loading="lazy" src="assets/AppUP.webp" alt="AppUP Windows Updater" class="project-image-appup">
-                            <div class="project-overlay">
-                                <div class="overlay-content">
-                                    <a class="view-project" href="https://github.com/nikhilthesingh/AppUP"
-                                        target="_blank" rel="noopener">View Project</a>
-                                    <button class="case-btn" type="button" data-case-open>Case Study</button>
-                                </div>
-                            </div>
+                    <div class="project-slide end-card">
+                        <div class="end-content">
+                            <span class="end-number">04</span>
+                            <span class="end-label">Next</span>
+                            <h3 class="end-title">Have a project in mind?</h3>
+                            <p class="end-desc">Let us build something clean, useful, and memorable.</p>
+                            <a href="#contact" class="end-cta magnetic-btn">
+                                <span>Start a Project</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
                         </div>
-                        <div class="project-info">
-                            <div class="project-meta">
-                                <span class="project-category">CLI Tool • Python</span>
-                            </div>
-                            <div class="project-head">
-                                <h3 class="project-title">AppUP</h3>
-                                <span class="project-status">Windows Updater</span>
-                            </div>
-                            <p class="project-desc">Retro matrix-styled CLI tool for updating Windows apps installed
-                                outside of
-                                Microsoft Store</p>
-                            <div class="project-kpis">
-                                <div class="kpi">
-                                    <span class="kpi-value">1,500+</span>
-                                    <span class="kpi-label">Apps supported</span>
-                                </div>
-                                <div class="kpi">
-                                    <span class="kpi-value">70%</span>
-                                    <span class="kpi-label">Less effort</span>
-                                </div>
-                                <div class="kpi">
-                                    <span class="kpi-value">Window 10+</span>
-                                    <span class="kpi-label">Platform</span>
-                                </div>
-                            </div>
-                            <div class="project-tech">
-                                <span>Python</span>
-                                <span>Rich</span>
-                                <span>PyInstaller</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/nikhilthesingh/AppUP" target="_blank" rel="noopener"
-                                    class="project-link button-style">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                                    </svg>
-                                    <span>GitHub</span>
-                                </a>
-                                <a href="https://raw.githubusercontent.com/nikhilthesingh/AppUP/main/AppUP.exe"
-                                    target="_blank" rel="noopener" class="project-link button-style primary">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                        <polyline points="7 10 12 15 17 10" />
-                                        <line x1="12" y1="15" x2="12" y2="3" />
-                                    </svg>
-                                    <span>Download AppUP</span>
-                                </a>
-                                <button type="button" data-case-open class="project-link button-style video-preview">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <polygon points="5 3 19 12 5 21 5 3" />
-                                    </svg>
-                                    <span>Video Demo</span>
-                                </button>
-                            </div>
-                            <div class="project-actions">
-                                <a href="https://github.com/nikhilthesingh/AppUP" target="_blank" rel="noopener" class="project-link"
-                                    data-magnetic>
-                                    <span>View on GitHub</span>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path d="M7 7h10v10M7 17L17 7" />
-                                    </svg>
-                                </a>
-                                <button class="case-btn ghost" type="button" data-case-open>Open Case</button>
-                            </div>
-                        </div>
-                    </article>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects-progress">
+                <div class="progress-track">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-counter">
+                    <span class="progress-current">01</span>
+                    <span class="progress-sep">/</span>
+                    <span class="progress-total">03</span>
                 </div>
             </div>
         </section>
